@@ -1,0 +1,43 @@
+Tables:
+1.       Login information table – for authentication
+2.       Orders – Deliveries or pickups, will create a unique id to attach to shopping cart and carry forward.
+3.       Shopping Cart – items being ordered during the ordering process
+4.       What Ordered – once paid for, what was ordered
+5.       History – once order completed, history of all orders
+6.       Stock – inventory of items that can be ordered
+ 
+Layout for user side:
+1.       Homepage
+2.       Login Page – Authentication process
+    a.       Registration page – POST request to ‘login information’ table
+3.       Personal Page
+    a.       Calendar of user personal deliveries? – GET request from ‘orders’ table
+    b.       Make Orders Button
+        i.      Delivery/Pickup
+            1.       Pick order time? GET request for availability from ‘orders’ table, POST to ‘orders’ table for ‘order’ being made, GET request from ‘Orders’ for order_id
+        ii.      Week 1 order – GET request from ‘stock’, POST to ‘shopping cart’ for each item with order id from delivery
+        iii.      Week 2 order – GET request from ‘stock’, POST to ‘shopping cart’ for each item with order id from delivery
+        iv.      Week 3 order – GET request from ‘stock’, POST to ‘shopping cart’ for each item with order id from delivery
+        v.      Week 4 order – GET request from ‘stock’, POST to ‘shopping cart’ for each item with order id from delivery
+        vi.      Payment – Payment processing, GET all instances from shopping cart and POST to What ordered table
+    c.       Edit Current Orders Button
+        i.      View current orders add in buttons for cancelling with individual meals, not full week. Must lock if delivery has already been made – GET for viewing, POST for editing
+        ii.      Send notification to manager
+    d.       View Prior Orders Button
+        i.      View for all prior orders from user. Include status, time, price, etc – GET for prior orders (Manager side must move what ordered to history table)
+ 
+Layout for manager side:
+1.       Login page – Authentication process
+2.       Personal Page
+    a.       Calendar of all deliveries? – GET request from ‘orders’ table for all orders
+    b.       Edit Current Orders Button
+        i.      View current orders add in buttons for cancelling with individual meals, not full week. Must lock if delivery has already been made – GET from ‘what ordered’ table for viewing, POST to ‘what ordered’ for editing
+        ii.      Complete orders button – GET request from ‘what ordered’, POST to ‘history’ table
+    c.       View Prior Orders Button
+        i.      View for all prior orders from user. Include status, time, price, etc – GET from ‘history’ for prior orders (Manager side must move ‘what ordered’ to ‘history’ table)
+3.       Reporting page – pull reports for:
+    a.       Items needing to be made now – GET request from ‘what ordered’ table
+    b.       Abandoned orders – GET request from ‘shopping cart’ of orders older than X time
+4.       Edit items for sale page
+    a.       GET request from ‘stock’ to see what is currently there, POST to ‘stock’ to update the items. [Need to account for pictures]
+ 
