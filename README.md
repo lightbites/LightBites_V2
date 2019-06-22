@@ -1,1 +1,5 @@
-# LightBites_V2
+# project-setup
+
+npm install
+
+npm run start:dev
