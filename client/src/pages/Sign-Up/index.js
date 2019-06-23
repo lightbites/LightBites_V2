@@ -26,7 +26,7 @@ export default class SignUp extends Component {
     // get our form data out of state
     
 
-    var url = "/api/customers";
+    var url = "https://lightbites.herokuapp.com/api/customers";
     const data = {firstname: this.state.firstname, lastname: this.state.lastname, email: this.state.email};
     
     fetch(url, {
