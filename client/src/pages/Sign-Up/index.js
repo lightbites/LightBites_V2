@@ -24,10 +24,10 @@ export default class SignUp extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     // get our form data out of state
-    
+    const { firstname, lastname, email } = this.state;
 
     var url = "https://lightbites.herokuapp.com/api/customers";
-    const data = {firstname: this.state.firstname, lastname: this.state.lastname, email: this.state.email};
+    var data = {firstname, lastname, email};
     
     fetch(url, {
       method: "POST", // or 'PUT'
@@ -35,14 +35,14 @@ export default class SignUp extends Component {
       headers:{
         "Content-Type": "application/json"
       }
-    }).then(res => res.json()) 
-      .then(res => console.log("Success:", res))
+    }).then(res => res.json())
+      .then(response => console.log("Success:", JSON.stringify(response)))
       .catch(error => console.error("Error:", error));
   }
 
 
   componentDidMount() {
-    fetch("/api/customers")
+    fetch("https://lightbites.herokuapp.com/api/customers")
       .then(res => res.json())
       .then(
         (result) => {
@@ -61,8 +61,7 @@ export default class SignUp extends Component {
             error
           });
         }
-      )
-      .then(console.log(res));
+      );
   }
 
 
