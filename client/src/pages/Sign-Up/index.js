@@ -42,7 +42,7 @@ export default class SignUp extends Component {
 
 
   componentDidMount() {
-    fetch("https://lightbites.herokuapp.com/api/customers")
+    fetch("/")
       .then(res => res.json())
       .then(
         (result) => {
