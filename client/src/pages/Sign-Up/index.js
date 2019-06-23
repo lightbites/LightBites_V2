@@ -27,7 +27,7 @@ export default class SignUp extends Component {
     const { firstname, lastname, email } = this.state;
 
     var url = "https://lightbites.herokuapp.com/api/customers";
-    var data = {firstname, lastname, email};
+    var data = {firstname: this.state.firstname, lastname: this.state.lastname, email: this.state.email};
     
     fetch(url, {
       method: "POST", // or 'PUT'
