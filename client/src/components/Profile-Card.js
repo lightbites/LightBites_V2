@@ -73,7 +73,7 @@ class ProfileTest extends Component {
             {profile.city}, {profile.state}
           </li>
         </ul>
-        <Button onClick={() => this.grabInformation("", "")}>
+        <Button onClick={() => this.grabInformation("firstname", "Anthony")}>
           Refresh Your Profile
         </Button>
       </div>
