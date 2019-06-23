@@ -18,53 +18,57 @@ function LoveFood() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Learn to love Food Again"}
-     
     </Typography>
   );
 }
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: "100vh",
+    height: "100vh"
   },
   image: {
-    backgroundImage: "url(https://images.unsplash.com/photo-1556911259-f9849ab65850?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=100)",
+    backgroundImage:
+      "url(https://images.unsplash.com/photo-1556911259-f9849ab65850?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=100)",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-    backgroundPosition: "center",
+    backgroundPosition: "center"
   },
   paper: {
     margin: theme.spacing(8, 4),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "center"
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.main
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(1)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
+    margin: theme.spacing(3, 0, 2)
+  }
 }));
 
 export default function SignInSide() {
   const classes = useStyles();
-  const [email, setEmail] = useState("");  
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log(email)
-  console.log(password)
+  fetch('https://lightbites.herokuapp.com/api/customers')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    console.log(JSON.stringify(myJson));
+  });
 
-  return ( 
+  return (
     <div>
       <Header />
       <Grid container component="main" className={classes.root}>
-        
         <CssBaseline />
         <Grid item xs={false} sm={4} md={7} className={classes.image} />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -73,7 +77,7 @@ export default function SignInSide() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-            Sign in
+              Sign in
             </Typography>
             <form className={classes.form} noValidate>
               <TextField
@@ -113,12 +117,10 @@ export default function SignInSide() {
                 color="primary"
                 className={classes.submit}
               >
-              Sign In
+                Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
-                 
-                </Grid>
+                <Grid item xs />
                 <Grid item>
                   <Link href="/signup" variant="body2">
                     {"Don't have an account? Sign Up"}
