@@ -33,7 +33,7 @@ export default class SignUp extends Component {
       method: "POST", // or 'PUT'
       body: JSON.stringify(data), // data can be `string` or {object}!
       headers:{
-        "Content-Type": "application/json"
+        "Content-Type": "application/json; charset=UTF-8"
       }
     }).then(res => res.json())
       .then(response => console.log("Success:", JSON.stringify(response)))
