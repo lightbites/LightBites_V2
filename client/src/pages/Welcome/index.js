@@ -122,21 +122,7 @@ export default function CenteredGrid() {
             </Button></Link>
           
           </Grid>
-          <Grid item xs={12}>
-            <h1 className={classes.text}>Take a look at some of the food we have to offer.</h1>
-          </Grid>
-          <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
-          </Grid>
-          <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
-          </Grid>
-          <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
-          </Grid>
-          <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
-          </Grid>
+          
         </Grid>
       </Container>
     </div>
