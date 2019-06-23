@@ -42,26 +42,9 @@ export default class SignUp extends Component {
 
 
   componentDidMount() {
-    fetch("/")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            firstname: result.firstname,
-            lastname: result.lastname,
-            email: result.email,
-            address: result.address
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            error
-          });
-        }
-      );
+    fetch("/api/customers")
+      .then(res => res.text())
+      .then(text => console.log(text));
   }
 
 
