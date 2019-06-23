@@ -24,10 +24,10 @@ export default class SignUp extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     // get our form data out of state
-    const { firstname, lastname, email } = this.state;
+    
 
-    var url = "https://lightbites.herokuapp.com/api/customers";
-    var data = {firstname: this.state.firstname, lastname: this.state.lastname, email: this.state.email};
+    var url = "/api/customers";
+    const data = {firstname: this.state.firstname, lastname: this.state.lastname, email: this.state.email};
     
     fetch(url, {
       method: "POST", // or 'PUT'
@@ -35,16 +35,34 @@ export default class SignUp extends Component {
       headers:{
         "Content-Type": "application/json"
       }
-    }).then(res => res.text()) 
-      .then(text => console.log(text))
+    }).then(res => res.json()) 
+      .then(res => console.log("Success:", res))
       .catch(error => console.error("Error:", error));
   }
 
 
   componentDidMount() {
     fetch("/api/customers")
-      .then(res => res.text())
-      .then(text => console.log(text));
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            firstname: result.firstname,
+            lastname: result.lastname,
+            email: result.email,
+            address: result.address
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            error
+          });
+        }
+      )
+      .then(console.log(res));
   }
 
 
