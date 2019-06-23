@@ -35,8 +35,8 @@ export default class SignUp extends Component {
       headers:{
         "Content-Type": "application/json"
       }
-    }).then(res => res.json())
-      .then(response => console.log("Success:", JSON.stringify(response)))
+    }).then(res => res.text()) 
+      .then(text => console.log(text))
       .catch(error => console.error("Error:", error));
   }
 
