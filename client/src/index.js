@@ -9,7 +9,7 @@ import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
 import Meals from "./pages/Meals";
 import Notfound from "./notfound";
-import SimpleMenu from "./components/Menu"
+import SimpleMenu from "./components/Menu";
 
 const routing = (
   <Router>
