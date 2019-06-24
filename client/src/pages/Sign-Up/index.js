@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 
 
 export default class SignUp extends Component {
@@ -7,8 +8,16 @@ export default class SignUp extends Component {
     this.state = {
       firstname: "",
       lastname: "",
+      phonenumber: "",
       email: "",
-      address: "",
+      password: "",
+      address1: "",
+      address2: "",
+      address3: "",
+      city: "",
+      state: "",
+      zip: "",
+      toProfile: false
     };
   }
 
@@ -21,13 +30,14 @@ export default class SignUp extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+
   onSubmit = (e) => {
     e.preventDefault();
     // get our form data out of state
-    const { firstname, lastname, email } = this.state;
+    const { firstname, lastname, phonenumber, email, password, address1, address2, address3, city, state, zip} = this.state;
 
-    var url = "https://lightbites.herokuapp.com/api/customers";
-    var data = {firstname, lastname, email};
+    var url = "https://lightbites.herokuapp.com/api/customers/create";
+    var data = {firstname, lastname, phonenumber, email, password, address1, address2, address3, city, state, zip};
     
     fetch(url, {
       method: "POST", // or 'PUT'
@@ -38,25 +48,33 @@ export default class SignUp extends Component {
       }
     }).then(res => res.json())
       .then(response => console.log("Success:", JSON.stringify(response)))
+      .then(() => this.setState(() => ({
+        toProfile: true
+      })))
       .catch(error => console.error("Error:", error));
   }
 
 
   componentDidMount() {
-    fetch("https://lightbites.herokuapp.com/api/customers")
+    fetch("https://lightbites.herokuapp.com/api/customers/")
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
             firstname: result.firstname,
             lastname: result.lastname,
+            phonenumber: result.phonenumber,
             email: result.email,
-            address: result.address
+            password: result.password,
+            address1: result.address1,
+            address2: result.address2,
+            address3: result.address3,
+            city: result.city,
+            state: result.state,
+            zip: result.zip
           });
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
+        
         (error) => {
           this.setState({
             error
@@ -67,7 +85,10 @@ export default class SignUp extends Component {
 
 
   render() {
-    const { firstname, lastname, email, address, error, isLoaded } = this.state;
+    const { firstname, lastname, phonenumber, email, password, address1, address2, address3, city, state, zip, error} = this.state;
+    if (this.state.toProfile === true) {
+      return <Redirect to='/profile' />;
+    }
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {
@@ -89,6 +110,13 @@ export default class SignUp extends Component {
           />
           <input
             type="text"
+            name="phonenumber"
+            value={phonenumber}
+            onChange={this.onChange}
+            placeholder="Phone Number"
+          />
+          <input
+            type="text"
             name="email"
             value={email}
             onChange={this.onChange}
@@ -96,10 +124,52 @@ export default class SignUp extends Component {
           />
           <input
             type="text"
-            name="address"
-            value={address}
+            name="password"
+            value={password}
             onChange={this.onChange}
-            placeholder="Address"
+            placeholder="Password"
+          />
+          <input
+            type="text"
+            name="address1"
+            value={address1}
+            onChange={this.onChange}
+            placeholder="Address 1"
+          />
+          <input
+            type="text"
+            name="address2"
+            value={address2}
+            onChange={this.onChange}
+            placeholder="Address 2"
+          />
+          <input
+            type="text"
+            name="address3"
+            value={address3}
+            onChange={this.onChange}
+            placeholder="Address 3"
+          />
+          <input
+            type="text"
+            name="city"
+            value={city}
+            onChange={this.onChange}
+            placeholder="City"
+          />
+          <input
+            type="text"
+            name="state"
+            value={state}
+            onChange={this.onChange}
+            placeholder="State"
+          />
+          <input
+            type="number"
+            name="zip"
+            value={zip}
+            onChange={this.onChange}
+            placeholder="Zipcode"
           />
           <button type="submit">Submit</button>
         </form>

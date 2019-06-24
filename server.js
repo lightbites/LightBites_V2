@@ -19,9 +19,9 @@ app.use(routes);
 // Start the API server
 // ADD SEQUELIZE HERE TO CONNECT TO YOUR DB
 db.sequelize.sync({ 
-  // force: true 
+  
 }).then(() => {
-  var run = require('./scripts/seedDB');
+  var run = require("./scripts/seedDB");
 
   app.listen(PORT, () => {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
