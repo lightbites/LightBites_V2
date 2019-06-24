@@ -56,14 +56,39 @@ export default function SignInSide() {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [page, setPage] = useState("");
 
-  fetch('https://lightbites.herokuapp.com/api/customers')
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(myJson) {
-    console.log(JSON.stringify(myJson));
-  });
+  const credentialCheck = e => {
+    e.preventDefault();
+    fetch("https://lightbites.herokuapp.com/api/customers", {
+      method: "GET"
+    })
+      .then(res => res.json())
+      .then(data => {
+        // console.log(data)
+        for (let i = 0; i < data.length; i++) {
+          const emailSearch = data[i].email;
+          const passSearch = data[i].password;
+
+          console.log("--" + email);
+          console.log("--" + password);
+
+          console.log(emailSearch);
+          console.log(passSearch);
+          if (email === emailSearch) {
+            if (password === passSearch) {
+              alert("Login Successful");
+              break;
+            } else {
+              alert(
+                "Email and/or Password entered is incorrect. Please try again."
+              );
+              break;
+            }
+          }
+        }
+      });
+  };
 
   return (
     <div>
@@ -116,6 +141,7 @@ export default function SignInSide() {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
+                onClick={credentialCheck}
               >
                 Sign In
               </Button>
