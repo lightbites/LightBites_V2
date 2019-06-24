@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 
 
 export default class SignUp extends Component {
@@ -15,7 +16,8 @@ export default class SignUp extends Component {
       address3: "",
       city: "",
       state: "",
-      zip: ""
+      zip: "",
+      toProfile: false
     };
   }
 
@@ -46,6 +48,9 @@ export default class SignUp extends Component {
       }
     }).then(res => res.json())
       .then(response => console.log("Success:", JSON.stringify(response)))
+      .then(() => this.setState(() => ({
+        toProfile: true
+      })))
       .catch(error => console.error("Error:", error));
   }
 
@@ -81,6 +86,9 @@ export default class SignUp extends Component {
 
   render() {
     const { firstname, lastname, phonenumber, email, password, address1, address2, address3, city, state, zip, error} = this.state;
+    if (this.state.toProfile === true) {
+      return <Redirect to='/profile' />;
+    }
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {
