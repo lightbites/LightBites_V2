@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   onMouseOver:{
     
     fontWeight: "bold",
-    color: "#333"
+    color: "#333333"
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -172,7 +172,6 @@ export default function Header() {
                 aria-controls={menuId}
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
-                color="#333"
               >
                 <i className="material-icons">
 shopping_cart
