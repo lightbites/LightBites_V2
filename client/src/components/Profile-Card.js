@@ -25,20 +25,20 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ProfileCard() {
+export default function ProfileCard(props) {
   const classes = useStyles();
   return (
     <Fragment>
       <Paper className={classes.paper}>
         <List>
           <ListItem>
-            Name
+            {props.lname ? `${props.lname}, ` : 'Last Name, '} {props.fname ? `${props.fname}` : 'First Name'}
           </ListItem>
           <ListItem>
-            Email
+            {props.email ? props.email : 'Your Email Address'}
           </ListItem>
           <ListItem>
-            City, State Zip
+            {props.location ? `${props.location.city}, ${props.location.state} ${props.location.zip}`: 'City, State Zip'}
           </ListItem>
         </List>
       </Paper>

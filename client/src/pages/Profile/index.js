@@ -8,6 +8,7 @@ import ProfileCard from "../../components/Profile-Card";
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    margin: '1em'
   },
   container: {
     marginTop: "5%"
@@ -32,8 +33,16 @@ export default function Profile() {
       <Grid className={classes.container} container spacing={3}>
         <Grid item xs={6}>
           <ProfileCard 
-            name={"John Jerome"}
-            calories={"2,145"}/>
+            lname="Jerome"
+            fname="John"
+            location={
+              {
+                city: "Austin",
+                state: "TX",
+                zip: "78731"
+              }
+            }
+          />
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper}>xs=12</Paper>
