@@ -13,21 +13,26 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Item() {
+//TODO: Using Meal_ID, grab image from Stock Table/Model in Db
+export default function Item(props) {
     const classes = useStyles();
     return (
         <Fragment>
             <Paper className={classes.paper}>
                 <Grid container space={3}>
                     <Grid item xs={3}>
-                        Col1: Image/Meal ID
+                        Meal ID: {props.mealid}
                     </Grid>
                     <Grid item xs={6}>
-                        Col2: Name, Description, etc.
+                        {props.imageUrl ? (
+                            <img src={props.imageurl} 
+                            alt="test"
+                        />
+                        ) : "No Image Available"}
                     </Grid>
                     <Grid item xs={3}>
-                        Quantity <br />
-                        Price
+                        {props.quantity} <br />
+                        {props.price}
                     </Grid>
                 </Grid>
             </Paper>
