@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Avatar from "@material-ui/core/Avatar";
@@ -12,6 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+import { Redirect } from "react-router-dom";
 
 
 const useStyles = makeStyles(theme => ({
@@ -63,6 +63,7 @@ export default function SignUp() {
       }
     }).then(res => res.json())
       .then(response => console.log("Success:", JSON.stringify(response)))
+      .then(<Redirect to="/profile" />)
       .catch(error => console.error("Error:", error));
   };
 
