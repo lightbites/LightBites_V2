@@ -7,12 +7,12 @@ export default function useFetch(url) {
     const [loading, setLoading] = useState(true);
 
     //Fetch API with Async/Await instead of promises
-    async function fetchUrl() {
-        const response = await fetch(url);
-        const json = await response.json();
-
-        setData(json.slice(0, 10));
-        setLoading(false);
+    function fetchUrl() {
+        fetch(url).then(res => res.json())
+        .then(response => {
+            setData(response.slice(0, 10));
+            setLoading(false);
+        })
     }
 
     useEffect(() => {
