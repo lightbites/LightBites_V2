@@ -3,12 +3,10 @@ import Header from "../../components/Header-Welcome";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import meals from "../../Assets/test/meals.json";
 import MealCard from "../../components/Card";
 import SimpleMenu from "../../components/Menu";
 import Container from "@material-ui/core/Container";
 
-console.log(meals);
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1
