@@ -13,6 +13,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Header from "../../components/Header-Welcome";
+import { Redirect } from "react-router-dom";
 
 function LoveFood() {
   return (
@@ -56,84 +57,120 @@ export default function SignInSide() {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [login, setLogin] = useState(false);
 
-  fetch('https://lightbites.herokuapp.com/api/customers')
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(myJson) {
-    console.log(JSON.stringify(myJson));
-  });
+  const credentialCheck = e => {
+    e.preventDefault();
+    fetch("https://lightbites.herokuapp.com/api/customers", {
+      method: "GET"
+    })
+      .then(res => res.json())
+      .then(data => {
+        for (let i = 0; i < data.length; i++) {
+          const emailSearch = data[i].email;
+          const passSearch = data[i].password;
 
-  return (
-    <div>
-      <Header />
-      <Grid container component="main" className={classes.root}>
-        <CssBaseline />
-        <Grid item xs={false} sm={4} md={7} className={classes.image} />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <form className={classes.form} noValidate>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                value={email}
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                onChange={e => setEmail(e.target.value)}
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                value={password}
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                onChange={e => setPassword(e.target.value)}
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Sign In
-              </Button>
-              <Grid container>
-                <Grid item xs />
-                <Grid item>
-                  <Link href="/signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
+          console.log("--" + email);
+          console.log("--" + password);
+
+          console.log(emailSearch);
+          console.log(passSearch);
+          if (email === emailSearch && password === passSearch) {
+            setLogin(true);
+            break
+          } else {
+            alert(
+              "Email and/or Password entered is incorrect. Please try again."
+            );
+            break;
+          }
+        }
+      });
+  };
+
+  if (!login) {
+    return (
+      <div>
+        <Header />
+        <Grid container component="main" className={classes.root}>
+          <CssBaseline />
+          <Grid item xs={false} sm={4} md={7} className={classes.image} />
+          <Grid
+            item
+            xs={12}
+            sm={8}
+            md={5}
+            component={Paper}
+            elevation={6}
+            square
+          >
+            <div className={classes.paper}>
+              <Avatar className={classes.avatar}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Sign in
+              </Typography>
+              <form className={classes.form} noValidate>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  value={email}
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  onChange={e => setEmail(e.target.value)}
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  value={password}
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  onChange={e => setPassword(e.target.value)}
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                  onClick={credentialCheck}
+                >
+                  Sign In
+                </Button>
+
+                <Grid container>
+                  <Grid item xs />
+                  <Grid item>
+                    <Link href="/signup" variant="body2">
+                      {"Don't have an account? Sign Up"}
+                    </Link>
+                  </Grid>
                 </Grid>
-              </Grid>
-              <Box mt={5}>
-                <LoveFood />
-              </Box>
-            </form>
-          </div>
+                <Box mt={5}>
+                  <LoveFood />
+                </Box>
+              </form>
+            </div>
+          </Grid>
         </Grid>
-      </Grid>
-    </div>
-  );
+      </div>
+    );
+  } else if (login) {
+    return <Redirect to="/profile" />;
+  }
 }
