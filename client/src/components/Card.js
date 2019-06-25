@@ -88,10 +88,10 @@ export default function MealCard(props) {
         <CardContent>
             <List>
                 <ListItem>
-                    <ListItemText primary="Cal 298"/>
-                    <ListItemText primary="Protein 35g"/>
-                    <ListItemText primary="Carbs 10g"/>
-                    <ListItemText primary="Fat 32g"/>
+                    <ListItemText primary={props.cal}/>
+                    <ListItemText primary={props.protein}/>
+                    <ListItemText primary={props.carbs}/>
+                    <ListItemText primary={props.fat}/>
                 </ListItem>
             </List>
         </CardContent>

@@ -75,7 +75,13 @@ export default function Meals() {
           <Grid container spacing={3}>
           {items.map(item => (
               <Grid item xs={3}>
-                <MealCard title={item.title1} />
+                <MealCard 
+                title={item.title1}
+                cal={item.line06}
+                protein={item.line07}
+                carbs={item.line08}
+                fat={item.line09}
+                 />
               </Grid>
             ))}
           </Grid>
