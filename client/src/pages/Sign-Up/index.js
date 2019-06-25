@@ -63,7 +63,7 @@ export default function SignUp() {
       }
     }).then(res => res.json())
       .then(response => console.log("Success:", JSON.stringify(response)))
-      .then(<Redirect to="/profile" />)
+      .then(this.props.history.push("/profile"))
       .catch(error => console.error("Error:", error));
   };
 
@@ -236,7 +236,7 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signin" variant="body2">
                     Already have an account? Sign in
               </Link>
             </Grid>
