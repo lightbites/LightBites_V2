@@ -4,9 +4,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-
-
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
@@ -14,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     minHeight: "100vh",
   },
   main: {
-    marginTop: theme.spacing(8),
+    marginTop: "10%",
     marginBottom: theme.spacing(2),
   },
   footer: {

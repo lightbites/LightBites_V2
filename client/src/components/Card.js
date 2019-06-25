@@ -12,9 +12,9 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -36,6 +36,13 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     backgroundColor: "#f50057"
+  },
+  price: {
+    fontSize: "1.2rem",
+    fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+    fontWeight: 400,
+    lineHeight: 1.43,
+    letterSpacing: "0.01071em"
   }
 }));
 
@@ -61,12 +68,12 @@ export default function MealCard(props) {
       />
       <CardMedia
         className={classes.media}
-        image="https://d2isyty7gbnm74.cloudfront.net/unsafe/1292x1292/https://square-production.s3.amazonaws.com/files/d5eaef8c3ee6446ad4b1a32a97241e649a0471a1/original.png"
-        title="Paella dish"
+        image={props.img}
+        title={props.title}
       />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a
+        <Typography className={classes.price} component="p">
+          ${props.price}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -86,14 +93,35 @@ export default function MealCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-            <List>
-                <ListItem>
-                    <ListItemText primary="Cal 298"/>
-                    <ListItemText primary="Protein 35g"/>
-                    <ListItemText primary="Carbs 10g"/>
-                    <ListItemText primary="Fat 32g"/>
-                </ListItem>
-            </List>
+          <Typography paragraph>Main Ingredients</Typography>
+          <List>
+            <ListItem>
+              <ListItemText primary={props.line11} />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary={props.line12} />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary={props.line13} />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary={props.line14} />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary={props.line15} />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary={props.line16} />
+            </ListItem>
+          </List>
+          <List>
+            <ListItem>
+              <ListItemText primary={props.cal} />
+              <ListItemText primary={props.protein} />
+              <ListItemText primary={props.carbs} />
+              <ListItemText primary={props.fat} />
+            </ListItem>
+          </List>
         </CardContent>
       </Collapse>
     </Card>

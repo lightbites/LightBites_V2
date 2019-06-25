@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header-Welcome";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
@@ -24,12 +24,21 @@ const useStyles = makeStyles(() => ({
     marginTop: "20px"
   },
   menu: {
-      float: "right",
-      marginTop: 10
+    float: "right",
+    marginTop: 10
   }
 }));
+
 export default function Meals() {
   const classes = useStyles();
+  const [items, setItems] = useState([]);
+  fetch("https://lightbites.herokuapp.com/api/stock", {
+    method: "GET"
+  })
+    .then(res => res.json())
+    .then(data => {
+      setItems(data);
+    });
   return (
     <div>
       <Header />
@@ -52,9 +61,23 @@ export default function Meals() {
             <SimpleMenu />
           </div>
           <Grid container spacing={3}>
-            {[1, 2, 3, 4, 5, 6, 7, 8].map(() => (
+            {items.map(item => (
               <Grid item xs={3}>
-                <MealCard title="Keto Pizza" />
+                <MealCard
+                  title={item.title1}
+                  img={item.imageURL}
+                  price={item.price}
+                  cal={item.line06}
+                  protein={item.line07}
+                  carbs={item.line08}
+                  fat={item.line09}
+                  line11={item.line11}
+                  line12={item.line12}
+                  line13={item.line13}
+                  line14={item.line14}
+                  line15={item.line15}
+                  line16={item.line16}
+                />
               </Grid>
             ))}
           </Grid>
