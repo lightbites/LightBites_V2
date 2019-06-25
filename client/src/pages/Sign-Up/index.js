@@ -45,11 +45,13 @@ export default function SignUp() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
+  const [signUp, setSignup] = useState(false);
 
 
   const handleSubmit = e => {
     e.preventDefault();
     // get our form data out of state
+    setSignup(true);
 
     var url = "https://lightbites.herokuapp.com/api/customers/create";
     var data = {firstname, lastname, phonenumber, email, password, address1, address2, address3, city, state, zip};
@@ -63,14 +65,13 @@ export default function SignUp() {
       }
     }).then(res => res.json())
       .then(response => console.log("Success:", JSON.stringify(response)))
-      .then(<Redirect to="/profile" />)
-      .catch(error => console.error("Error:", error));
+      .catch(error => console.error("Error:", error)); 
   };
 
 
 
 
-
+  if (!signUp) {
   return (
     <Container component="main" maxWidth="md">
       <CssBaseline />
@@ -236,7 +237,7 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signin" variant="body2">
                     Already have an account? Sign in
               </Link>
             </Grid>
@@ -246,4 +247,6 @@ export default function SignUp() {
          
     </Container>
   );
-}
+}else if (signUp) {
+  return <Redirect to="/profile" />;
+} }
