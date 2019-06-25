@@ -11,6 +11,8 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
+
+
 const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1,
@@ -173,9 +175,9 @@ export default function Header() {
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
               >
-                <i className="material-icons">
+              <i class="material-icons">
 shopping_cart
-                </i>
+</i>
               </IconButton>
             </Link>
 
