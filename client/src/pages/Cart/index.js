@@ -4,6 +4,17 @@ import Footer from '../../components/Footer'
 import Item from './Item'
 import useFetch from './Hooks'
 
+import Button from '@material-ui/core/Button'
+
+function Loading() {
+  return (
+    <Item 
+      imageUrl={'http://www.fillmurray.com/g/75/75'}
+    />
+  )
+}
+
+//TODO: Checkout Button
 export default function Cart() {
   const [data, loading] = useFetch('https://lightbites.herokuapp.com/api/cart'); 
 
@@ -12,7 +23,7 @@ export default function Cart() {
       <Header />
         <main>
           {loading ? (
-            "Loading Your Cart..."
+            <Loading />
           ) : (
               data.map((item, index) => {
                 console.log(item);
@@ -24,6 +35,11 @@ export default function Cart() {
                 />
               })
           )}
+          <div style={{textAlign: 'center'}}>
+            <Button>
+              Checkout
+            </Button>
+          </div>
         </main>
       <Footer />
     </Fragment>
