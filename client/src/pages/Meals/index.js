@@ -77,10 +77,18 @@ export default function Meals() {
               <Grid item xs={3}>
                 <MealCard 
                 title={item.title1}
+                img={item.imageURL}
+                price={item.price}
                 cal={item.line06}
                 protein={item.line07}
                 carbs={item.line08}
                 fat={item.line09}
+                line11={item.line11}
+                line12={item.line12}
+                line13={item.line13}
+                line14={item.line14}
+                line15={item.line15}
+                line16={item.line16}
                  />
               </Grid>
             ))}
