@@ -77,7 +77,7 @@ export default function SignInSide() {
           console.log(passSearch);
           if (email === emailSearch && password === passSearch) {
             setLogin(true);
-            break
+            break;
           } else {
             alert(
               "Email and/or Password entered is incorrect. Please try again."
