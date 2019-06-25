@@ -45,6 +45,7 @@ export default function SignUp() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
+  const [signUp, setSignup] = useState(false);
 
 
   const handleSubmit = e => {
@@ -65,12 +66,13 @@ export default function SignUp() {
       .then(response => console.log("Success:", JSON.stringify(response)))
       .then(this.props.history.push("/profile"))
       .catch(error => console.error("Error:", error));
+      setSignup(true);
   };
 
 
 
 
-
+  if (!signUp) {
   return (
     <Container component="main" maxWidth="md">
       <CssBaseline />
@@ -246,4 +248,6 @@ export default function SignUp() {
          
     </Container>
   );
-}
+}else if (signUp) {
+  return <Redirect to="/profile" />;
+} }
