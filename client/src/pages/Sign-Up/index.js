@@ -51,6 +51,7 @@ export default function SignUp() {
   const handleSubmit = e => {
     e.preventDefault();
     // get our form data out of state
+    setSignup(true);
 
     var url = "https://lightbites.herokuapp.com/api/customers/create";
     var data = {firstname, lastname, phonenumber, email, password, address1, address2, address3, city, state, zip};
@@ -64,9 +65,7 @@ export default function SignUp() {
       }
     }).then(res => res.json())
       .then(response => console.log("Success:", JSON.stringify(response)))
-      .then(this.props.history.push("/profile"))
-      .catch(error => console.error("Error:", error));
-      setSignup(true);
+      .catch(error => console.error("Error:", error)); 
   };
 
 
