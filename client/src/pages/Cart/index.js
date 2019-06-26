@@ -1,6 +1,5 @@
 import React, {Fragment}  from "react";
 import Header from '../../components/Header'
-import Footer from '../../components/Footer'
 import Item from './Item'
 import useFetch from './Hooks'
 
@@ -41,7 +40,6 @@ export default function Cart() {
             </Button>
           </div>
         </main>
-      <Footer />
     </Fragment>
   )
 }
