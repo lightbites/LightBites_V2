@@ -6,14 +6,16 @@ export default function useFetch(url) {
   //State for loading
   const [loading, setLoading] = useState(true);
 
-  //Fetch API with Async/Await instead of promises
-  function fetchUrl() {
-    fetch(url).then(res => res.json())
-      .then(response => {
-        setData(response.slice(0, 10));
-        setLoading(false);
-      });
-  }
+
+    //Fetch API with Async/Await instead of promises
+    function fetchUrl() {
+        fetch(url).then(res => res.json())
+        .then(response => {
+            setData(response);
+            setLoading(false);
+        })
+    }
+
 
   useEffect(() => {
     fetchUrl();

@@ -6,10 +6,14 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
 const useStyles = makeStyles(theme => ({
-  paper: {
+  itemRow: {
     padding: theme.spacing(2),
     margin: theme.spacing(2),
-    textAlign: 'center'
+    textAlign: 'center',
+    width: '500px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center'
   }
 }))
 
@@ -18,24 +22,24 @@ export default function Item(props) {
     const classes = useStyles();
     return (
         <Fragment>
-            <Paper className={classes.paper}>
-                <Grid container space={3}>
-                    <Grid item xs={3}>
-                        Meal ID: {props.mealid}
-                    </Grid>
-                    <Grid item xs={6}>
-                        {props.imageUrl ? (
-                            <img src={props.imageurl} 
-                            alt="test"
-                        />
-                        ) : "No Image Available"}
-                    </Grid>
-                    <Grid item xs={3}>
-                        {props.quantity} <br />
-                        {props.price}
-                    </Grid>
+            <Grid container justify={'center'} space={3}>
+                <Paper className={classes.itemRow}>
+                <Grid item xs={2}>
+                    Meal ID: {props.mealid}
                 </Grid>
-            </Paper>
+                <Grid item xs={5}>
+                    {props.imageUrl ? (
+                        <img src={props.imageUrl} 
+                        alt="test"
+                    />
+                    ) : "No Image Available"}
+                </Grid>
+                <Grid item xs={2}>
+                    {props.quantity ? `Quantity: ${props.quantity}` : ''} <br />
+                    {props.price}
+                </Grid>
+                </Paper>
+            </Grid>
         </Fragment>
     )
 }
