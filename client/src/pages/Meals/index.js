@@ -64,6 +64,7 @@ export default function Meals() {
             {items.map(item => (
               <Grid item xs={3}>
                 <MealCard
+                  key={item.meal_id}
                   title={item.title1}
                   img={item.imageURL}
                   price={item.price}

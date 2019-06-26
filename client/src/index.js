@@ -12,6 +12,7 @@ import Notfound from "./notfound";
 import SimpleMenu from "./components/Menu";
 import Administration from "./components/Admin";
 
+
 const routing = (
   <Router>
     <div>
@@ -24,7 +25,7 @@ const routing = (
         <Route path="/profile" component={Profile} />
         <Route path="/cart" component={Cart} />
         <Route path="/meals" component={Meals} />
-        <Route path="/menu" component={SimpleMenu} /> {/* remove path before deploy */}
+        <Route path="/icon" component={FontAwesome} /> {/* remove path before deploy */}
         <Route component={Notfound} />
       </Switch>
     </div>

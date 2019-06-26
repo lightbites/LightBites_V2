@@ -10,11 +10,12 @@ import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import ShareIcon from "@material-ui/icons/Share";
+// import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import FontAwesome from "../components/addToCart";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -56,6 +57,11 @@ export default function MealCard(props) {
 
   const letSlice = title => title.slice(0, 1);
 
+  const click = () => {
+    console.log("click");
+    console.log("otherclick");
+  };
+
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -77,9 +83,15 @@ export default function MealCard(props) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="Share">
-          <ShareIcon />
-        </IconButton>
+        {/* <IconButton aria-label="Share"> */}
+        {/* <ShareIcon /> */}
+        {/* </IconButton> */}
+
+        <div onClick={click}
+        className={classes.addToCart}>
+          <FontAwesome />
+        </div>
+
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded
