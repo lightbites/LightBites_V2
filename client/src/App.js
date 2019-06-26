@@ -14,7 +14,7 @@ function App() {
     
     <Welcome />
     
-    <StickyFooter />
+    <StickyFooter/>
   </div>;
 }
 
