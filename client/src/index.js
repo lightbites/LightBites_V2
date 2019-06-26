@@ -10,11 +10,8 @@ import Cart from "./pages/Cart";
 import Meals from "./pages/Meals";
 import Notfound from "./notfound";
 import SimpleMenu from "./components/Menu";
-<<<<<<< HEAD
 import Checkout from './pages/Checkout'
-=======
 import Administration from "./components/Admin";
->>>>>>> b4fb82dc33fe28d969a1d00a55b42b995b314bce
 
 const routing = (
   <Router>
