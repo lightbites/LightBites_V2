@@ -10,7 +10,7 @@ export default function useFetch(url) {
     function fetchUrl() {
         fetch(url).then(res => res.json())
         .then(response => {
-            setData(response.slice(0, 10));
+            setData(response);
             setLoading(false);
         })
     }

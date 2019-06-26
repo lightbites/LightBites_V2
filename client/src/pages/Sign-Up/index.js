@@ -64,11 +64,8 @@ export default function SignUp() {
         "Accept": "application/json"
       }
     }).then(res => res.json())
-      .then(response => {
-        const json = JSON.stringify(response);
-        console.log("Success:", json);
-      
-      });
+      .then(response => console.log("Success:", JSON.stringify(response)))
+      .catch(error => console.error("Error:", error)); 
   };
 
 

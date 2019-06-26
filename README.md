@@ -1,5 +1,7 @@
-# project-setup
+# Light Bites Storefront
 
-npm install
-
-npm run start:dev
+## Scripts
+Clone the repo and run:  
+`npm install`  
+For development, run:  
+`npm run start:dev`

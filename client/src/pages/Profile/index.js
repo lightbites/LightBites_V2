@@ -3,13 +3,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Header from "../../components/Header-Welcome";
-import ProfileCard from "../../components/Profile-Card";
+//import ProfileCard from "../../components/Profile-Card";
 import useFetch from '../Cart/Hooks'
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    margin: '1em'
+    margin: '1em',
+    alignItems: 'center'
   },
   container: {
     marginTop: "5%"
@@ -21,6 +22,12 @@ const useStyles = makeStyles(theme => ({
   },
   text: {
     textAlign: "left"
+  },
+  pageContainer: {
+    width: '500px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center'
   }
 }));
 
@@ -30,47 +37,39 @@ export default function Profile() {
   return (
     <div className={classes.root}>
       <Header />
-      
+      <div className={classes.pageContainer}>
       <Grid className={classes.container} container spacing={3}>
         <Grid item xs={6}>
-          {
-            loading ? <ProfileCard /> :
-            <ProfileCard 
-              fname={data[0].firstname}
-              lname={data[0].lastname}
-              email={data[0].email}
-              location={
-                {
-                  city: data[0].city,
-                  state: data[0].state,
-                  zip: data[0].zip
-                }
-              }
-            />
-          }
+        <Paper className={classes.paper}>Name</Paper>
         </Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=12</Paper>
+          <Paper className={classes.paper}>Button</Paper>
         </Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
+          <Paper className={classes.paper}>Address</Paper>
         </Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
+          <Paper className={classes.paper}>
+            Button
+          </Paper>
         </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>
+            City, State
+          </Paper>
         </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
+        <Grid item xs={2}>
+          <Paper className={classes.paper}>
+            Zip
+          </Paper>
         </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>
+            Button
+          </Paper>
         </Grid>
       </Grid>
+      </div>
     </div>
   );
 }
