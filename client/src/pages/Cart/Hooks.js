@@ -1,11 +1,10 @@
-import {useState, useEffect} from "react";
+import {useState, useEffect} from 'react'
 
 export default function useFetch(url) {
-  //Initialize State with an empty array
-  const [data, setData] = useState([]);
-  //State for loading
-  const [loading, setLoading] = useState(true);
-
+    //Initialize State with an empty array
+    const [data, setData] = useState([]);
+    //State for loading
+    const [loading, setLoading] = useState(true);
 
     //Fetch API with Async/Await instead of promises
     function fetchUrl() {
@@ -16,10 +15,9 @@ export default function useFetch(url) {
         })
     }
 
-
-  useEffect(() => {
-    fetchUrl();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  return [data, loading];
+    useEffect(() => {
+        fetchUrl();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    return [data, loading];
 }
