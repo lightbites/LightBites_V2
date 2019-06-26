@@ -55,7 +55,7 @@ export default function SignUp() {
 
     var url = "https://lightbites.herokuapp.com/api/customers/create";
     var data = {firstname, lastname, phonenumber, email, password, address1, address2, address3, city, state, zip};
-    
+    sessionStorage.setItem("myValueInLocalStorage", JSON.stringify(data));
     fetch(url, {
       method: "POST", // or 'PUT'
       body: JSON.stringify(data), // data can be `string` or {object}!
@@ -67,7 +67,7 @@ export default function SignUp() {
       .then(response => {
         const json = JSON.stringify(response);
         console.log("Success:", json);
-        sessionStorage.setItem(json, event.target.value);
+      
       });
   };
 
