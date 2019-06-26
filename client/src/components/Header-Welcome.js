@@ -175,9 +175,9 @@ export default function Header() {
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
               >
-              <i className="material-icons">
-shopping_cart
-</i>
+                <i className="material-icons">
+
+                </i>
               </IconButton>
             </Link>
 
