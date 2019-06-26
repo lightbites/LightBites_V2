@@ -1,8 +1,8 @@
-import React, {Fragment}  from "react";
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
-import Item from './Item'
-import useFetch from './Hooks'
+import React, {Fragment} from "react";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import Item from "./Item";
+import useFetch from "./Hooks";
 
 import Button from '@material-ui/core/Button'
 
@@ -16,11 +16,12 @@ function Loading() {
 
 //TODO: Checkout Button
 export default function Cart() {
-  const [data, loading] = useFetch('https://lightbites.herokuapp.com/api/cart'); 
+  const [data, loading] = useFetch("https://lightbites.herokuapp.com/api/cart"); 
 
   return (
     <Fragment>
       <Header />
+
         <main>
           {loading ? (
             <Loading />
@@ -41,7 +42,8 @@ export default function Cart() {
             </Button>
           </div>
         </main>
+
       <Footer />
     </Fragment>
-  )
+  );
 }
