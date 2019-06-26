@@ -39,7 +39,7 @@
     "node-sass": "^4.12.0",
     "react-lazy-hero": "^2.0.0",
     "react-router-dom": "^5.0.1",
-    "sequelize": "^6.0.0",
+    "sequelize": "^5.8.9",
     "styled-components": "^4.3.1"
   }
 }

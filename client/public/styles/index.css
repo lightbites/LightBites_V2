@@ -1,0 +1,38 @@
+
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1920px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+    body {
+        background-image: url("../Assets/images/bg.png");
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: cover;
+    }
+}
+
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1920px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+    body {
+        background-image: url("../Assets/images/bg.png");
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: cover;
+    }
+}
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    body {
+        background-image: url("../Assets/images/bg_1024.png");
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: cover;
+    }
+
+}

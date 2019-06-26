@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    minHeight: "100vh",
+    minHeight: "20vh",
   },
   main: {
     marginTop: "10%",
@@ -16,9 +16,11 @@ const useStyles = makeStyles(theme => ({
   },
   footer: {
     padding: theme.spacing(2),
-    marginTop: "auto",
-    backgroundColor: "white",
+    marginTop: "5%"
   },
+  text: {
+    textAlign: "center"
+  }
 }));
 
 export default function StickyFooter() {
@@ -26,10 +28,11 @@ export default function StickyFooter() {
 
   return (
     <div className={classes.root}>
-     
+      
       <footer className={classes.footer}>
         <Container maxWidth="sm">
-          <Typography variant="body1">Created 2019</Typography>
+          <hr />
+          <Typography variant="body1" className={classes.text}>Created 2019</Typography>
          
         </Container>
       </footer>
