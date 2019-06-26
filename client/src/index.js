@@ -9,7 +9,8 @@ import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
 import Meals from "./pages/Meals";
 import Notfound from "./notfound";
-import SimpleMenu from "./components/Menu";
+import FontAwesome from "./components/addToCart";
+
 
 const routing = (
   <Router>
@@ -22,7 +23,7 @@ const routing = (
         <Route path="/profile" component={Profile} />
         <Route path="/cart" component={Cart} />
         <Route path="/meals" component={Meals} />
-        <Route path="/menu" component={SimpleMenu} /> {/* remove path before deploy */}
+        <Route path="/icon" component={FontAwesome} /> {/* remove path before deploy */}
         <Route component={Notfound} />
       </Switch>
     </div>
