@@ -9,9 +9,10 @@ import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
 import Meals from "./pages/Meals";
 import Notfound from "./notfound";
+import FontAwesome from "./components/addToCart";
+
 import SimpleMenu from "./components/Menu";
 import Administration from "./components/Admin";
-
 
 const routing = (
   <Router>

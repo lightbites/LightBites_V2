@@ -176,7 +176,7 @@ export default function Header() {
                 onClick={handleProfileMenuOpen}
               >
                 <i className="material-icons">
-shopping_cart
+
                 </i>
               </IconButton>
             </Link>
