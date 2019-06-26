@@ -1,7 +1,15 @@
-import React from 'react'
+import React, {Fragment} from 'react'
+import Header from '../../components/Header'
 
 export default function CheckoutPage() {
     return (
-        <div></div>
+        <Fragment>
+            <Header />
+            <div>
+                <h1>
+                    Checkout Page
+                </h1>
+            </div>
+        </Fragment>
     )
 }

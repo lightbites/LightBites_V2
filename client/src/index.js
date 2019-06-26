@@ -10,6 +10,7 @@ import Cart from "./pages/Cart";
 import Meals from "./pages/Meals";
 import Notfound from "./notfound";
 import SimpleMenu from "./components/Menu";
+import Checkout from './pages/Checkout'
 
 const routing = (
   <Router>
@@ -23,6 +24,7 @@ const routing = (
         <Route path="/cart" component={Cart} />
         <Route path="/meals" component={Meals} />
         <Route path="/menu" component={SimpleMenu} /> {/* remove path before deploy */}
+        <Route path="/checkout" component={Checkout} />
         <Route component={Notfound} />
       </Switch>
     </div>
