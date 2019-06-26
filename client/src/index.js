@@ -10,6 +10,7 @@ import Cart from "./pages/Cart";
 import Meals from "./pages/Meals";
 import Notfound from "./notfound";
 import SimpleMenu from "./components/Menu";
+import Administration from "./components/Admin";
 
 const routing = (
   <Router>
@@ -18,6 +19,7 @@ const routing = (
         <Route exact path="/" component={App} />
         <Route path="/welcome" component={Welcome} />
         <Route path="/signin" component={SignInSide} />
+        <Route path="/administration" component={Administration} />
         <Route path="/signup" component={SignUp} />
         <Route path="/profile" component={Profile} />
         <Route path="/cart" component={Cart} />
