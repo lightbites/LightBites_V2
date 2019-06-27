@@ -28,15 +28,12 @@ const routing = (
         <Route path="/profile" component={Profile} />
         <Route path="/cart" component={Cart} />
         <Route path="/meals" component={Meals} />
-<<<<<<< HEAD
         <Route path="/menu" component={SimpleMenu} /> {/* remove path before deploy */}
         <Route path="/checkout" component={Checkout} />
-=======
         <Route path="/administration" component={Administration} />
         <Route path="/addStock" component={addToStock} />
         <Route path="/update" component={updateStock} />
         <Route path="/icon" component={FontAwesome} /> {/* remove path before deploy */}
->>>>>>> 3b7fcc599ff879c0d458791572d2eae45f6bdd68
         <Route component={Notfound} />
       </Switch>
     </div>
