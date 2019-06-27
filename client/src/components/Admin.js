@@ -12,6 +12,7 @@ import React from "react";
 // import MailIcon from "@material-ui/icons/Mail";
 // import NotificationsIcon from "@material-ui/icons/Notifications";
 // import MoreIcon from "@material-ui/icons/MoreVert";
+import { Link } from "react-router-dom";
 import Jumbotron from "./Admin/jumbotron/index.js";
 import Container from "./Admin/container/index.js";
 import Button from "@material-ui/core/Button";
@@ -134,9 +135,9 @@ class App extends React.Component {
           button to route to add to inventory
         </p>
         <p>
-          <Button variant="contained" color="primary">
+        <Link to="/addStock"><Button variant="contained" color="primary">
           Add to inv
-          </Button>
+          </Button></Link>
         </p>
         <br />
         <br />
@@ -144,9 +145,9 @@ class App extends React.Component {
           button to route to remove from inventory
         </p>
         <p>
-          <Button variant="contained" color="primary">
+        <Link to="/update"><Button variant="contained" color="primary">
             Mi fro inv
-          </Button>
+          </Button></Link>
         </p>
       </div>
     );
