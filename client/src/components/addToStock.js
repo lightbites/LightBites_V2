@@ -84,16 +84,17 @@ import "./Admin/App.css";
 
 class addToStock extends React.Component {
 
+
+  
   // thisWeek = (props) => {
   //   db.sequelize.query("INSERT INTO order_history (unique_id, order_id, fulfillment_date, meal_id, quantity, price, order_date, delivery_date) VALUES (1,1,(SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1, 08, DAYOFWEEK(CURDATE()))) DAY)),1,1,8,CURDATE(),(SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1, 08, DAYOFWEEK(CURDATE()))) DAY)));").then(([results, metadata]) => {   });  
   //   // this.setState({vX: v0}); 
   // };
 
-  render(props) {
+  render() {
     return (
       <div className="App">
         <Jumbotron />
-        <Container />
         <br />
         <br />
         <br />

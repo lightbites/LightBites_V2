@@ -89,16 +89,14 @@ class updateStock extends React.Component {
   //   // this.setState({vX: v0}); 
   // };
 
-  render(props) {
+  render() {
     return (
       <div className="App">
         <Jumbotron />
-        <Container />
         <br />
         <br />
         <br />
         <br />
-
       </div>
     );
   }
