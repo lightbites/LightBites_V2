@@ -4,12 +4,13 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Header from "../../components/Header-Welcome";
 //import ProfileCard from "../../components/Profile-Card";
-import useFetch from '../Cart/Hooks'
+import useFetch from "../Cart/Hooks";
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    margin: '1em'
+    margin: "1em",
+    alignItems: "center"
   },
   container: {
     marginTop: "5%"
