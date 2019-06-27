@@ -17,6 +17,8 @@ import Container from "./Admin/container/index.js";
 import Button from "@material-ui/core/Button";
 import "./Admin/App.css";
 
+// var db = require("../../../models");
+
 // const useStyles = makeStyles(theme => ({
 //   grow: {
 //     flexGrow: 1,
@@ -79,83 +81,78 @@ import "./Admin/App.css";
 //   },
 // }));
 
+class App extends React.Component {
 
+  // thisWeek = (props) => {
+  //   db.sequelize.query("INSERT INTO order_history (unique_id, order_id, fulfillment_date, meal_id, quantity, price, order_date, delivery_date) VALUES (1,1,(SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1, 08, DAYOFWEEK(CURDATE()))) DAY)),1,1,8,CURDATE(),(SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1, 08, DAYOFWEEK(CURDATE()))) DAY)));").then(([results, metadata]) => {   });  
+  //   // this.setState({vX: v0}); 
+  // };
 
+  render(props) {
+    return (
+      <div className="App">
+        <Jumbotron />
+        <Container />
+        <br />
+        <br />
+        <br />
+        <br />
+        <p>
+          db.sequelize.query("select SUM(wo.quantity), s.title from what_ordered wo left join Stock s on wo.meal_id = s.meal_id where wo.fulfillment_date = CURDATE() group by s.title;").then(([results, metadata]) => {   });
+        </p>
+        <p>
+          <Button variant="contained" color="primary" 
+          // onClick={this.thisWeek}
+          >
+            this week 
+          </Button>
+        </p>
+        <br />
+        <br />
+        <p>
+          db.sequelize.query("select SUM(wo.quantity), s.title from what_ordered wo left join Stock s on wo.meal_id = s.meal_id where wo.fulfillment_date = (SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1,08, DAYOFWEEK(CURDATE()))) DAY)) group by s.title;").then(([results, metadata]) => {   });        
+        </p>
+        <p>
+          <Button variant="contained" color="primary">
+            next week
+          </Button>
+        </p>
+        <br />
+        <br />
+        <p>
+          db.sequelize.query("INSERT INTO order_history (unique_id, order_id, fulfillment_date, meal_id, quantity, price, order_date, delivery_date, createdAt, updatedAt) SELECT unique_id, order_id, fulfillment_date, meal_id, quantity, price, order_date, delivery_date, CURDATE(), CURDATE() FROM what_ordered WHERE fulfillment_date = CURDATE();").then(([results, metadata]) => {   });
+          db.sequelize.query("DELETE FROM what_ordered where fulfillment_date = CURDATE();").then(([results, metadata]) => {   });
+        </p>
+        <p>
+          <Button variant="contained" color="primary">
+            Complete!
+          </Button>
+        </p>
+        <br />
+        <br />
+        <p>
+          button to route to add to inventory
+        </p>
+        <p>
+          <Button variant="contained" color="primary">
+          Add to inv
+          </Button>
+        </p>
+        <br />
+        <br />
+        <p>
+          button to route to remove from inventory
+        </p>
+        <p>
+          <Button variant="contained" color="primary">
+            Mi fro inv
+          </Button>
+        </p>
+      </div>
+    );
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <Jumbotron />
-      <Container />
-      <br />
-      <br />
-      <br />
-      <br />
-      <p>
-        select SUM(wo.quantity) 
-        , s.title 
-        from what_ordered wo
-        left join Stock s
-          on wo.meal_id = s.meal_id
-        where wo.fulfillment_date = CURDATE()
-        group by s.title;
-      </p>
-      <p>
-        <Button variant="contained" color="primary">
-          this week 
-        </Button>
-      </p>
-      <br />
-      <br />
-      <p>
-        select SUM(wo.quantity)
-        , s.title from what_ordered wo
-        left join Stock s
-          on wo.meal_id = s.meal_id
-        where wo.fulfillment_date = (SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1,08, DAYOFWEEK(CURDATE()))) DAY)) 
-        group by s.title;
-      </p>
-      <p>
-        <Button variant="contained" color="primary">
-          next week
-        </Button>
-      </p>
-      <br />
-      <br />
-      <p>
-        Build a query to pull all values from the what_ordered table and insert them into the order_history table
-        select *
-        from what_ordered
-        where fulfillment_date = CURDATE()
-        ;
-      </p>
-      <p>
-        <Button variant="contained" color="primary">
-          Complete!
-        </Button>
-      </p>
-      <br />
-      <br />
-      <p>
-        button to route to add to inventory
-      </p>
-      <p>
-        <Button variant="contained" color="primary">
-         Add to inv
-        </Button>
-      </p>
-      <br />
-      <br />
-      <p>
-        button to route to remove from inventory
-      </p>
-      <p>
-        <Button variant="contained" color="primary">
-          Mi fro inv
-        </Button>
-      </p>
-    </div>
-  );
 }
 
 export default App;
+
