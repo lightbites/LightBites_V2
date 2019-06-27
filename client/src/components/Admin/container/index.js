@@ -7,7 +7,7 @@ function Container(props){
     return (
         <div className="container">
             <div className="row justify-content-center">{props.children}</div>
-            This should be the location for the data to display. I am located at src/components/Admin/container/index.js
+            {props.state.containerBox}
         </div>
     )
 };
