@@ -9,11 +9,7 @@ import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
 import Meals from "./pages/Meals";
 import Notfound from "./notfound";
-<<<<<<< HEAD
-import SimpleMenu from "./components/Menu";
 import Checkout from './pages/Checkout'
-=======
->>>>>>> 3b7fcc599ff879c0d458791572d2eae45f6bdd68
 import Administration from "./components/Admin";
 import FontAwesome from "./components/addToCart";
 import addToStock from "./components/addToStock";
