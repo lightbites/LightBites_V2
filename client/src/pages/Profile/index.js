@@ -33,8 +33,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+//This takes the latest user from session storage, parses the data and runs it through the hook
+let url = 'https://lightbites.herokuapp.com/api/customers/'
+if (sessionStorage.myValueInLocalStorage) {
+  const data = JSON.parse(sessionStorage.myValueInLocalStorage);
+  url = `https://lightbites.herokuapp.com/api/customers/email/${data.email}`
+}
+
 export default function Profile() {
-  const [data, loading] = useFetch('https://lightbites.herokuapp.com/api/customers/');
+  const [data, loading] = useFetch(url);
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -83,6 +90,11 @@ export default function Profile() {
             <Grid item xs={6}>
               <Paper className={classes.paper}>
                 Button 3
+              </Paper>
+            </Grid>
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                Chart will be placed here
               </Paper>
             </Grid>
           </Grid>
