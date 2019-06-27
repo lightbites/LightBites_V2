@@ -18,6 +18,7 @@ import Container from "./Admin/container/index.js";
 import Button from "@material-ui/core/Button";
 import "./Admin/App.css";
 
+
 // var db = require("../../../models");
 
 // const useStyles = makeStyles(theme => ({
@@ -84,16 +85,32 @@ import "./Admin/App.css";
 
 class App extends React.Component {
 
-  // thisWeek = (props) => {
-  //   db.sequelize.query("INSERT INTO order_history (unique_id, order_id, fulfillment_date, meal_id, quantity, price, order_date, delivery_date) VALUES (1,1,(SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1, 08, DAYOFWEEK(CURDATE()))) DAY)),1,1,8,CURDATE(),(SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1, 08, DAYOFWEEK(CURDATE()))) DAY)));").then(([results, metadata]) => {   });  
-  //   // this.setState({vX: v0}); 
-  // };
+  state = {
+    containerBox: "Please choose a week to display. 'src/components/Admin/container/index.js'"
+  }
+
+  thisWeek = (props) => {
+  //   
+    this.setState({containerBox: "x"}); // db.sequelize.query("select SUM(wo.quantity), s.title from what_ordered wo left join Stock s on wo.meal_id = s.meal_id where wo.fulfillment_date = (SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1,08, DAYOFWEEK(CURDATE()))) DAY)) group by s.title;").then(([results, metadata]) => {   });
+  };
+
+  nextWeek = (props) => {
+  //   db.sequelize.query("select SUM(wo.quantity), s.title from what_ordered wo left join Stock s on wo.meal_id = s.meal_id where wo.fulfillment_date = (SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1,08, DAYOFWEEK(CURDATE()))) DAY)) group by s.title;").then(([results, metadata]) => {   });
+    this.setState({containerBox: "y"}); 
+  };
+
+  complete = (props) => {
+  // db.sequelize.query("INSERT INTO order_history (unique_id, order_id, fulfillment_date, meal_id, quantity, price, order_date, delivery_date, createdAt, updatedAt) SELECT unique_id, order_id, fulfillment_date, meal_id, quantity, price, order_date, delivery_date, CURDATE(), CURDATE() FROM what_ordered WHERE fulfillment_date = CURDATE();").then(([results, metadata]) => {   });
+  // db.sequelize.query("DELETE FROM what_ordered where fulfillment_date = CURDATE();").then(([results, metadata]) => {   });
+    this.setState({containerBox: "z"}); 
+  };
+  
 
   render(props) {
     return (
       <div className="App">
         <Jumbotron />
-        <Container />
+        <Container state = {this.state}/>
         <br />
         <br />
         <br />
@@ -102,8 +119,10 @@ class App extends React.Component {
           db.sequelize.query("select SUM(wo.quantity), s.title from what_ordered wo left join Stock s on wo.meal_id = s.meal_id where wo.fulfillment_date = CURDATE() group by s.title;").then(([results, metadata]) => {   });
         </p>
         <p>
-          <Button variant="contained" color="primary" 
-          // onClick={this.thisWeek}
+          <Button 
+          variant="contained" 
+          color="primary" 
+          onClick={this.thisWeek}
           >
             this week 
           </Button>
@@ -114,7 +133,10 @@ class App extends React.Component {
           db.sequelize.query("select SUM(wo.quantity), s.title from what_ordered wo left join Stock s on wo.meal_id = s.meal_id where wo.fulfillment_date = (SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1,08, DAYOFWEEK(CURDATE()))) DAY)) group by s.title;").then(([results, metadata]) => {   });        
         </p>
         <p>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" 
+          color="primary"
+          onClick={this.nextWeek}
+          >
             next week
           </Button>
         </p>
@@ -125,7 +147,11 @@ class App extends React.Component {
           db.sequelize.query("DELETE FROM what_ordered where fulfillment_date = CURDATE();").then(([results, metadata]) => {   });
         </p>
         <p>
-          <Button variant="contained" color="primary">
+          <Button 
+          variant="contained" 
+          color="primary"
+          onClick={this.complete}
+          >
             Complete!
           </Button>
         </p>
