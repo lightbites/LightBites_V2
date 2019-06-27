@@ -13,6 +13,7 @@ import Administration from "./components/Admin";
 import FontAwesome from "./components/addToCart";
 import addToStock from "./components/addToStock";
 import updateStock from "./components/updateStock";
+import { Link } from "react-router-dom";
 import SimpleMenu from "./components/Menu";
 
 const routing = (
