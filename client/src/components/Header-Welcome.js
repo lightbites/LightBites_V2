@@ -12,57 +12,37 @@ import Grid from "@material-ui/core/Grid";
 import { NavLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
+import MenuIcon from "@material-ui/icons/Menu";
 
 const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1),
-  },
-  input: {
-    display: "none",
-  },
   root: {
     flexGrow: 1,
-    paddingLeft: "1%"
   },
-  card: {
-    maxWidth: 345,
+  menuButton: {
+    marginRight: theme.spacing(2),
   },
-  container: {
-    marginTop: "1%"
+  title: {
+    flexGrow: 1,
   },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  },
-  button: {
-    ...theme.typography.button,
-    margin: theme.spacing(1),
-  },
-  input: {
-    display: "none",
-  },
-
-  text: {
-    textAlign: "center",
-    fontFamily: "'Lora', serif"
-  },
-  headline: {
-    textAlign: "left",
-    fontFamily: "'Lora', serif",
-    lineHeight: "160%"
-  },
-
-  cta: {
-    marginTop: "2%"
-  },
-  center: {
-    alignContent: "center"
-  }
 }));
 
 export default function Header() {
   const classes = useStyles();
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  function handleChange(event) {
+    setAuth(event.target.checked);
+  }
+
+  function handleMenu(event) {
+    setAnchorEl(event.currentTarget);
+  }
+
+  function handleClose() {
+    setAnchorEl(null);
+  }
 
      
  
@@ -70,37 +50,41 @@ export default function Header() {
   return (
     <header>
       <Container className={classes.container} maxWidth="lg">
-        <Grid container spacing={3}>
-        
-          <Grid item xs={2} className={classes.center}>
-            
-            
-          </Grid>
-          <Grid item xs={2} className={classes.center}>
-            <Link to="/signin"><Button variant="contained" color="secondary" className={classes.button}>
-        Sign In
-            </Button></Link>
-            
-          </Grid>
-          <Grid item xs={2} className={classes.center}>
-            
-            <Link to="/signup"><Button variant="contained" color="secondary" className={classes.button}>
-        Sign Up
-            </Button></Link>
-            
-          </Grid>
-          
-          <Grid item xs={2} className={classes.center}>
-           
-            <Link to="/profile"><Button variant="contained" color="secondary" className={classes.button}>
-        My Profile
-            </Button></Link>
-          </Grid>
-          <Grid item xs={2} className={classes.center}>
-            
-            
-          </Grid>
-        </Grid>
+        <Toolbar>
+         
+          {auth && (
+            <div>
+              <IconButton
+                aria-label="Account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <Link to="/"><MenuItem onClick={handleClose}>Home</MenuItem></Link>
+                <Link to="/signin"><MenuItem onClick={handleClose}>Log In</MenuItem></Link>
+                <Link to="/signup"><MenuItem onClick={handleClose}>Sign Up</MenuItem></Link>
+              </Menu>
+            </div>
+          )}
+        </Toolbar>
       </Container>
       <hr />
     </header>
