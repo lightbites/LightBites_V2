@@ -6,11 +6,6 @@ export default function useFetch(url) {
     //State for loading
     const [loading, setLoading] = useState(true);
 
-    //Check for sesssionStorage first!
-    if (sessionStorage.myValueInLocalStorage) {
-        const data = JSON.parse(sessionStorage.myValueInLocalStorage);
-        url = `https://lightbites.herokuapp.com/api/customers/email/${data.email}`
-    }
     function fetchUrl() {
         fetch(url).then(res => res.json())
         .then(response => {
@@ -20,7 +15,13 @@ export default function useFetch(url) {
     }
 
     useEffect(() => {
-        fetchUrl();
+        if (sessionStorage.myValueInLocalStorage) {
+            const data = JSON.parse(sessionStorage.myValueInLocalStorage);
+            setData(data);
+            setLoading(false);
+        } else{
+            fetchUrl();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return [data, loading];

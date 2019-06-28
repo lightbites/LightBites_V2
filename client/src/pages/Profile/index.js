@@ -45,7 +45,7 @@ export default function Profile() {
             <Grid item xs={6}>
               <Paper className={classes.paper}>
                 {
-                  loading ? 'Your name' :  `${data[0].firstname} ${data[0].lastname}`
+                  loading ? 'Your name' :  `${data.firstname} ${data.lastname}`
                 }
               </Paper>
             </Grid>
@@ -57,7 +57,7 @@ export default function Profile() {
             <Grid item xs={6}>
               <Paper className={classes.paper}>
                 {
-                  loading ? 'Your Address' : `${data[0].address1}`
+                  loading ? 'Your Address' : `${data.address1}`
                 }
               </Paper>
             </Grid>
@@ -69,14 +69,14 @@ export default function Profile() {
             <Grid item xs={3}>
               <Paper className={classes.paper}>
               {
-                loading ? 'Your City, State' : `${data[0].city}, ${data[0].state}`
+                loading ? 'Your City, State' : `${data.city}, ${data.state}`
               }
               </Paper>
             </Grid>
             <Grid item xs={3}>
               <Paper className={classes.paper}>
                 {
-                  loading ? 'Your Zipcode' : `${data[0].zip}`
+                  loading ? 'Your Zipcode' : `${data.zip}`
                 }
               </Paper>
             </Grid>
