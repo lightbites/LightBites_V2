@@ -38,6 +38,7 @@ export default function FontAwesome(props) {
       <Icon
         className={clsx(classes.iconHover, "fas fa-cart-plus")}
         style={{ fontSize: 30 }}
+        key={props.id}
       />
     </div>
   );
