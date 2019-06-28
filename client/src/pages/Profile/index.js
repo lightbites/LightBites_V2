@@ -1,10 +1,10 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Header from "../../components/Header-Welcome";
 //import ProfileCard from "../../components/Profile-Card";
-import useFetch from "../Cart/Hooks";
+import useFetch from "./ProfileHook";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,15 +33,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-//This takes the latest user from session storage, parses the data and runs it through the hook
-let url = 'https://lightbites.herokuapp.com/api/customers/'
-if (sessionStorage.myValueInLocalStorage) {
-  const data = JSON.parse(sessionStorage.myValueInLocalStorage);
-  url = `https://lightbites.herokuapp.com/api/customers/email/${data.email}`
-}
-
 export default function Profile() {
-  const [data, loading] = useFetch(url);
+  const [data, loading] = useFetch('https://lightbites.herokuapp.com/api/customers');
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -58,7 +51,7 @@ export default function Profile() {
             </Grid>
             <Grid item xs={6}>
               <Paper className={classes.paper}>
-                Button 1
+                No orders OR Previous Orders (Check and use ternary)
               </Paper>
             </Grid>
             <Grid item xs={6}>
@@ -70,7 +63,7 @@ export default function Profile() {
             </Grid>
             <Grid item xs={6}>
               <Paper className={classes.paper}>
-                Button 2
+                REMOVE
               </Paper>
             </Grid>
             <Grid item xs={3}>
@@ -89,12 +82,7 @@ export default function Profile() {
             </Grid>
             <Grid item xs={6}>
               <Paper className={classes.paper}>
-                Button 3
-              </Paper>
-            </Grid>
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                Chart will be placed here
+                Go to meals page
               </Paper>
             </Grid>
           </Grid>
