@@ -18,7 +18,14 @@ import Container from "./Admin/container/index.js";
 import Button from "@material-ui/core/Button";
 import "./Admin/App.css";
 
+// var customerDB = require("https://lightbites.herokuapp.com/api/customers");
+// var orderhistoryDB = require("https://lightbites.herokuapp.com/api/order_history");
+// var ordersDB = require("https://lightbites.herokuapp.com/api/orders");
+// var shoppingcartDB = require("https://lightbites.herokuapp.com/api/cart");
+// var stockDB = require("https://lightbites.herokuapp.com/api/stock");
+// var whatorderedDB = require("https://lightbites.herokuapp.com/api/wordered");
 
+// console.log(customerDB)
 // var db = require("../../../models");
 
 // const useStyles = makeStyles(theme => ({
@@ -84,25 +91,47 @@ import "./Admin/App.css";
 // }));
 
 class App extends React.Component {
-
   state = {
-    containerBox: "Please choose a week to display. 'src/components/Admin/container/index.js'"
+    containerBox: "Please choose a week to display. 'src/components/Admin/container/index.js'",
+    containerName: ''
   }
 
   thisWeek = (props) => {
-  //   
-    this.setState({containerBox: "x"}); // db.sequelize.query("select SUM(wo.quantity), s.title from what_ordered wo left join Stock s on wo.meal_id = s.meal_id where wo.fulfillment_date = (SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1,08, DAYOFWEEK(CURDATE()))) DAY)) group by s.title;").then(([results, metadata]) => {   });
+    fetch("https://lightbites.herokuapp.com/api/stock")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            containerBox: result[0].fulfillment_date,
+            containerName: result[0].meal_id
+          });
+        },
+        (error) => {
+          this.setState({
+            error
+          });
+        }
+      );
   };
 
+
+  // thisWeek = (props) => {
+  //   props.get("https://lightbites.herokuapp.com/api/stock", function(req, res) {
+  //     this.setState({
+  //       containerBox: res[0].fulfillment_date,
+  //       containerName: res[0].meal_id
+  //     });
+  //   }
+  // };
+
   nextWeek = (props) => {
-  //   db.sequelize.query("select SUM(wo.quantity), s.title from what_ordered wo left join Stock s on wo.meal_id = s.meal_id where wo.fulfillment_date = (SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1,08, DAYOFWEEK(CURDATE()))) DAY)) group by s.title;").then(([results, metadata]) => {   });
-    this.setState({containerBox: "y"}); 
+  // db.sequelize.query("select SUM(wo.quantity), s.title from what_ordered wo left join Stock s on wo.meal_id = s.meal_id where wo.fulfillment_date = (SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1,08, DAYOFWEEK(CURDATE()))) DAY)) group by s.title;").then(([results, metadata]) => {   });
+    this.setState({containerBox: "y", containerName: " "}); 
   };
 
   complete = (props) => {
-  // db.sequelize.query("INSERT INTO order_history (unique_id, order_id, fulfillment_date, meal_id, quantity, price, order_date, delivery_date, createdAt, updatedAt) SELECT unique_id, order_id, fulfillment_date, meal_id, quantity, price, order_date, delivery_date, CURDATE(), CURDATE() FROM what_ordered WHERE fulfillment_date = CURDATE();").then(([results, metadata]) => {   });
-  // db.sequelize.query("DELETE FROM what_ordered where fulfillment_date = CURDATE();").then(([results, metadata]) => {   });
-    this.setState({containerBox: "z"}); 
+    //fetch('https://lightbites.herokuapp.com/api/stock', {method: 'GET'}.then(res => res.json()).then(data => //Here is where you'd add a fetch with POST
+    this.setState({containerBox: "z", containerName: " "}); 
   };
   
 
@@ -116,13 +145,20 @@ class App extends React.Component {
         <br />
         <br />
         <p>
-          db.sequelize.query("select SUM(wo.quantity), s.title from what_ordered wo left join Stock s on wo.meal_id = s.meal_id where wo.fulfillment_date = CURDATE() group by s.title;").then(([results, metadata]) => {   });
+          db.sequelize.query("
+            select SUM(wo.quantity), s.title 
+            from what_ordered wo 
+            left join Stock s 
+              on wo.meal_id = s.meal_id 
+            where wo.fulfillment_date = (SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1,08, DAYOFWEEK(CURDATE()))) DAY)) 
+            group by s.title;
+          ").then(([results, metadata]) => {   });
         </p>
         <p>
           <Button 
-          variant="contained" 
-          color="primary" 
-          onClick={this.thisWeek}
+            variant="contained" 
+            color="primary" 
+            onClick={this.thisWeek}
           >
             this week 
           </Button>
@@ -134,8 +170,8 @@ class App extends React.Component {
         </p>
         <p>
           <Button variant="contained" 
-          color="primary"
-          onClick={this.nextWeek}
+            color="primary"
+            onClick={this.nextWeek}
           >
             next week
           </Button>
@@ -143,14 +179,13 @@ class App extends React.Component {
         <br />
         <br />
         <p>
-          db.sequelize.query("INSERT INTO order_history (unique_id, order_id, fulfillment_date, meal_id, quantity, price, order_date, delivery_date, createdAt, updatedAt) SELECT unique_id, order_id, fulfillment_date, meal_id, quantity, price, order_date, delivery_date, CURDATE(), CURDATE() FROM what_ordered WHERE fulfillment_date = CURDATE();").then(([results, metadata]) => {   });
-          db.sequelize.query("DELETE FROM what_ordered where fulfillment_date = CURDATE();").then(([results, metadata]) => {   });
+          wo-oh.js 
         </p>
         <p>
           <Button 
-          variant="contained" 
-          color="primary"
-          onClick={this.complete}
+            variant="contained" 
+            color="primary"
+            onClick={this.complete}
           >
             Complete!
           </Button>
@@ -161,7 +196,7 @@ class App extends React.Component {
           button to route to add to inventory
         </p>
         <p>
-        <Link to="/addStock"><Button variant="contained" color="primary">
+          <Link to="/addStock"><Button variant="contained" color="primary">
           Add to inv
           </Button></Link>
         </p>
@@ -171,14 +206,13 @@ class App extends React.Component {
           button to route to remove from inventory
         </p>
         <p>
-        <Link to="/update"><Button variant="contained" color="primary">
+          <Link to="/update"><Button variant="contained" color="primary">
             Mi fro inv
           </Button></Link>
         </p>
       </div>
     );
   }
-
 }
 
 export default App;
