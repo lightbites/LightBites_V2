@@ -16,7 +16,9 @@ function Loading() {
 //TODO: Checkout Button
 export default function Cart() {
   const [data, loading] = useFetch('https://lightbites.herokuapp.com/api/cart'); 
-
+  const total = loading ? 0 : data.reduce((accumulator, currentValue)=>{
+    return parseFloat(accumulator) + parseFloat(currentValue.price);
+  }, 0);
   return (
     <Fragment>
       <Header />
@@ -35,9 +37,7 @@ export default function Cart() {
               })
           )}
           <div style={{textAlign: 'center'}}>
-            <Button>
-              Checkout
-            </Button>
+              {loading ? 'Loading Total': `Total: $${total}`} <Button>Checkout</Button>
           </div>
         </main>
     </Fragment>
