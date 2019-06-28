@@ -77,12 +77,12 @@ export default function SignInSide() {
           console.log(passSearch);
           if (email === emailSearch && password === passSearch) {
             setLogin(true);
-            break;
-          } else {
-            alert(
+            //Load the user data in to sessionStorage
+            return sessionStorage.setItem("myValueInLocalStorage", JSON.stringify(data[i]));
+          } else if (i === (data.length - 1)) { //Check to see if we've hit the last item in the data array
+            return alert(
               "Email and/or Password entered is incorrect. Please try again."
             );
-            break;
           }
         }
       });
