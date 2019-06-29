@@ -49,8 +49,9 @@ export default function Meals() {
   const addToCart = (id, price) => {
     // console.log(id)
     // console.log(price)
+    var quantity = 1;
     var url = "https://lightbites.herokuapp.com/api/cart/create";
-    var data = { id, price };
+    var data = { id, price, quantity };
     sessionStorage.setItem("myValueInLocalStorage", JSON.stringify(data));
     fetch(url, {
       method: "POST", // or 'PUT'
