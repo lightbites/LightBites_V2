@@ -61,6 +61,10 @@ export default function MealCard(props) {
     console.log("click");
     console.log("otherclick");
   };
+  function handleClick(e) {
+    e.preventDefault();
+    console.log("The link was clicked.");
+  }
 
   return (
     <Card className={classes.card}>
@@ -87,7 +91,7 @@ export default function MealCard(props) {
         {/* <ShareIcon /> */}
         {/* </IconButton> */}
 
-        <div onClick={click}
+        <div onClick={handleClick}
           className={classes.addToCart}>
           <FontAwesome 
           //id={props.}
