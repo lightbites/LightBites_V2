@@ -15,13 +15,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Header from "../../components/Header-Welcome";
 import { Redirect } from "react-router-dom";
 
-function LoveFood() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Learn to love Food Again"}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -50,7 +43,13 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
-  }
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+  input: {
+    display: "none",
+  },
 }));
 
 export default function SignInSide() {
@@ -91,7 +90,7 @@ export default function SignInSide() {
   if (!login) {
     return (
       <div>
-        <Header />
+       
         <Grid container component="main" className={classes.root}>
           <CssBaseline />
           <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -162,7 +161,11 @@ export default function SignInSide() {
                   </Grid>
                 </Grid>
                 <Box mt={5}>
-                  <LoveFood />
+                  <Link href="/"><Button color="primary" className={classes.button}>
+        Return Home
+                  </Button>
+                  </Link>
+                  
                 </Box>
               </form>
             </div>

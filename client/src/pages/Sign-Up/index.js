@@ -12,6 +12,7 @@ import Container from "@material-ui/core/Container";
 import { Redirect } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import Box from "@material-ui/core/Box";
 
 
 const useStyles = makeStyles(theme => ({
@@ -272,6 +273,13 @@ export default function SignUp() {
                     </Link>
                   </Grid>
                 </Grid>
+                <Box mt={5}>
+                  <Link href="/"><Button color="primary" className={classes.button}>
+        Return Home
+                  </Button>
+                  </Link>
+                  
+                </Box>
               </form>
             </div>
           </CardContent>
