@@ -5,6 +5,15 @@ import Grid from "@material-ui/core/Grid";
 import Header from "../../components/Header-Welcome";
 //import ProfileCard from "../../components/Profile-Card";
 import useFetch from "./ProfileHook";
+import useFetch2 from './HistoryHook'
+import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,17 +33,21 @@ const useStyles = makeStyles(theme => ({
     textAlign: "left"
   },
   pContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center'
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center"
   },
   body: {
-    width: '768px'
+    width: "768px"
+  },
+  card: {
+    maxWidth: 345,
   }
 }));
 
 export default function Profile() {
-  const [data, loading] = useFetch('https://lightbites.herokuapp.com/api/customers');
+  const [data, loading] = useFetch("https://lightbites.herokuapp.com/api/customers");
+  const [info, searching] = useFetch2("https://lightbites.herokuapp.com/api/orderhistory");
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -42,48 +55,60 @@ export default function Profile() {
       <div className={classes.pContainer}>
         <div className={classes.body}>
           <Grid className={classes.container} container spacing={3}>
+            
+            
+            
+            
+           
             <Grid item xs={6}>
-              <Paper className={classes.paper}>
-                {
-                  loading ? 'Your name' :  `${data.firstname} ${data.lastname}`
-                }
-              </Paper>
+              <Card className={classes.card}>
+                <CardActionArea>
+                  
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {
+                        loading ? "Your name" : `${data.firstname} ${data.lastname}`
+                      }
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+            
+                      {
+                        loading ? "Your Address" : `${data.address1}`
+                      } { }
+                      {
+                        loading ? "Your City, State" : `${data.city}, ${data.state}`
+                      } { }
+                      {
+                        loading ? "Your Zipcode" : `${data.zip}`
+                      }
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions>
+                  <Link href="/meals" variant="body2"><Button size="small" color="primary">
+          Lets Start Your Order
+                  </Button></Link>
+              
+                </CardActions>
+              </Card>
+              
             </Grid>
             <Grid item xs={6}>
-              <Paper className={classes.paper}>
-                No orders OR Previous Orders (Check and use ternary)
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <Paper className={classes.paper}>
-                {
-                  loading ? 'Your Address' : `${data.address1}`
-                }
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <Paper className={classes.paper}>
-                REMOVE
-              </Paper>
-            </Grid>
-            <Grid item xs={3}>
-              <Paper className={classes.paper}>
-              {
-                loading ? 'Your City, State' : `${data.city}, ${data.state}`
-              }
-              </Paper>
-            </Grid>
-            <Grid item xs={3}>
-              <Paper className={classes.paper}>
-                {
-                  loading ? 'Your Zipcode' : `${data.zip}`
-                }
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <Paper className={classes.paper}>
-                Go to meals page
-              </Paper>
+              <Card className={classes.card}>
+                <CardActionArea>
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                Previous Orders
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      {
+                        searching ? "Your Orders" : `${info.meal_id}`
+                      }
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                
+              </Card>
             </Grid>
           </Grid>
         </div>

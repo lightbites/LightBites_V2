@@ -6,6 +6,8 @@ import Grid from "@material-ui/core/Grid";
 import MealCard from "../../components/Card";
 import SimpleMenu from "../../components/Menu";
 import Container from "@material-ui/core/Container";
+import Link from "@material-ui/core/Link";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -26,6 +28,9 @@ const useStyles = makeStyles(() => ({
   menu: {
     float: "right",
     marginTop: 10
+  },
+  button: {
+    margin: "5px"
   }
 }));
 
@@ -47,15 +52,14 @@ export default function Meals() {
           <Grid container spacing={3}>
             <Grid item xs={4}>
               <p className={classes.paragraph}>
-                Bacon ipsum dolor amet ham hock leberkas beef landjaeger, corned
-                beef picanha alcatra prosciutto rump burgdoggen beef ribs
-                pastrami biltong. Ground round andouille tri-tip biltong ham
-                bacon shankle shank landjaeger porchetta.{" "}
+                Pick your meals for the week. Just click the cart icon to add meals to your cart.{" "}
               </p>
             </Grid>
             <Grid item xs={8}>
               <Box className={classes.box} />
+              
             </Grid>
+            <Link href="/cart"><Button color="primary" className={classes.button}>Go to Cart</Button></Link>
           </Grid>
           <div className={classes.menu}>
             <SimpleMenu />
