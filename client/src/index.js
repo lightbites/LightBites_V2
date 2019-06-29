@@ -9,7 +9,7 @@ import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
 import Meals from "./pages/Meals";
 import Notfound from "./notfound";
-import Checkout from './pages/Checkout'
+import Checkout from "./pages/Checkout";
 import Administration from "./components/Admin";
 import FontAwesome from "./components/addToCart";
 import addToStock from "./components/addToStock";

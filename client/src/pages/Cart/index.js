@@ -1,36 +1,36 @@
-import React, {Fragment}  from "react";
-import Header from '../../components/Header'
-import Item from './Item'
-import useFetch from './Hooks'
-import {makeStyles} from '@material-ui/core/styles'
-import {Link} from 'react-router-dom'
-import Button from '@material-ui/core/Button'
-import Paper from '@material-ui/core/Paper'
-import Grid from '@material-ui/core/Grid'
+import React, {Fragment} from "react";
+import Header from "../../components/Header";
+import Item from "./Item";
+import useFetch from "./Hooks";
+import {makeStyles} from "@material-ui/core/styles";
+import {Link} from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 
 function Loading() {
   return (
     <Item 
-      imageUrl={'http://www.fillmurray.com/g/75/75'}
+      imageUrl={"http://www.fillmurray.com/g/75/75"}
     />
-  )
+  );
 }
 
 const useStyles = makeStyles(theme => ({
   checkoutContainer: {
     padding: theme.spacing(2),
     margin: theme.spacing(2),
-    width: '500px',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    width: "500px",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
   }
-}))
+}));
 
 export default function Cart() {
   const classes = useStyles();
-  const [data, loading] = useFetch('https://lightbites.herokuapp.com/api/cart'); 
+  const [data, loading] = useFetch("https://lightbites.herokuapp.com/api/cart"); 
   
   const total = loading ? 0 : data.reduce((accumulator, currentValue)=>{
     return parseFloat(accumulator) + parseFloat(currentValue.price * parseInt(currentValue.quantity));
@@ -38,26 +38,26 @@ export default function Cart() {
   return (
     <Fragment>
       <Header />
-        <main>
-          {loading ? (
-            <Loading />
-          ) : (
-              data.map((item, index) => {
-                console.log(item);
-                return <Item
-                  key={index}
-                  mealid={item.meal_id}
-                  price={`$${item.price}`}
-                  quantity={item.quantity}
-                />
-              })
-          )}
-          <Grid container justify={'center'}>
+      <main>
+        {loading ? (
+          <Loading />
+        ) : (
+          data.map((item, index) => {
+            console.log(item);
+            return <Item
+              key={index}
+              mealid={item.meal_id}
+              price={`$${item.price}`}
+              quantity={item.quantity}
+            />;
+          })
+        )}
+        <Grid container justify={"center"}>
           <Paper className={classes.checkoutContainer}>
-            {loading ? 'Loading Total': `Total: $${total}`} <Button color="primary" variant="contained"><Link to='/checkout'><span style={{color: 'white'}}>Checkout</span></Link></Button>
+            {loading ? "Loading Total": `Total: $${total}`} <Button color="primary" variant="contained"><Link to='/checkout'><span style={{color: "white"}}>Checkout</span></Link></Button>
           </Paper>
-          </Grid>
-        </main>
+        </Grid>
+      </main>
     </Fragment>
-  )
+  );
 }

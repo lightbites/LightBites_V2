@@ -88,7 +88,7 @@ export default function MealCard(props) {
         {/* </IconButton> */}
 
         <div onClick={click}
-        className={classes.addToCart}>
+          className={classes.addToCart}>
           <FontAwesome 
           //id={props.}
           />
