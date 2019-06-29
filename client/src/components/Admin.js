@@ -98,22 +98,48 @@ class App extends React.Component {
   }
 
 
-  thisWeek = (props) => {
-    fetch("https://lightbites.herokuapp.com/api/stock")
-      .then(res => res.json())
-      .then((result) => {
-        this.setState({
-          containerBox: result[0].fulfillment_date,
-          containerName: result[0].meal_id
-        });
-      },
-      (error) => {
-        this.setState({
-          error
-        });
+  handleSubmit = e => { console.log("handleSubmit called")
+    e.preventDefault();
+    var url = "https://lightbites.herokuapp.com/api/customers/create";
+
+    fetch("/api/adminRoutes/testRoute", {
+      method: "POST", // or 'PUT'
+      body: "", // data can be `string` or {object}!
+      headers:{
+        "Content-Type": "application/json",
+        "Accept": "application/json"
       }
-      );
+    }).then(res => res.json())
+      .then(response => console.log("Success:", JSON.stringify(response)))
+      .catch(error => console.error("Error:", error)); 
   };
+
+
+
+
+
+
+
+
+
+
+
+  // thisWeek = (props) => {
+  //   fetch("https://lightbites.herokuapp.com/api/stock")
+  //     .then(res => res.json())
+  //     .then((result) => {
+  //       this.setState({
+  //         containerBox: result[0].fulfillment_date,
+  //         containerName: result[0].meal_id
+  //       });
+  //     },
+  //     (error) => {
+  //       this.setState({
+  //         error
+  //       });
+  //     }
+  //     );
+  // };
 
   complete = (props) => {
     fetch("https://lightbites.herokuapp.com/api/wordered") 
@@ -172,7 +198,7 @@ class App extends React.Component {
           <Button 
             variant="contained" 
             color="primary"
-            onClick={this.complete}
+            onClick={this.handleSubmit}
           >
             Complete!
           </Button>
