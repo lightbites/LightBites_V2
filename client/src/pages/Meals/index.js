@@ -37,6 +37,8 @@ const useStyles = makeStyles(() => ({
 export default function Meals() {
   const classes = useStyles();
   const [items, setItems] = useState([]);
+
+  
   fetch("https://lightbites.herokuapp.com/api/stock", {
     method: "GET"
   })
@@ -82,6 +84,7 @@ export default function Meals() {
                   line14={item.line14}
                   line15={item.line15}
                   line16={item.line16}
+                  
                 />
               </Grid>
             ))}

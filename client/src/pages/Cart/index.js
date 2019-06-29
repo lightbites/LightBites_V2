@@ -32,6 +32,11 @@ export default function Cart() {
   const classes = useStyles();
   const [data, loading] = useFetch("https://lightbites.herokuapp.com/api/cart"); 
   
+  function handleClick(e) {
+    e.preventDefault();
+    alert(`Your payment of $${total} has been paid. Your delivery will be sent out at the beginning of the week.`);
+  }
+
   const total = loading ? 0 : data.reduce((accumulator, currentValue)=>{
     return parseFloat(accumulator) + parseFloat(currentValue.price * parseInt(currentValue.quantity));
   }, 0);
@@ -54,7 +59,7 @@ export default function Cart() {
         )}
         <Grid container justify={"center"}>
           <Paper className={classes.checkoutContainer}>
-            {loading ? "Loading Total": `Total: $${total}`} <Button color="primary" variant="contained"><Link to='/checkout'><span style={{color: "white"}}>Checkout</span></Link></Button>
+            {loading ? "Loading Total": `Total: $${total}`} <Button color="primary" variant="contained" onClick={handleClick}>Checkout</Button>
           </Paper>
         </Grid>
       </main>
