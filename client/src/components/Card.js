@@ -57,14 +57,13 @@ export default function MealCard(props) {
 
   const letSlice = title => title.slice(0, 1);
 
-  const click = () => {
-    console.log("click");
-    console.log("otherclick");
-  };
-  function handleClick(e) {
-    e.preventDefault();
-    console.log("The link was clicked.");
-  }
+  // const click = () => {
+  //   console.log("click");
+  //   console.log("otherclick");
+  // };
+  // function handleClick(id) {
+  //   console.log("The link was clicked.");
+  // }
 
   return (
     <Card className={classes.card}>
@@ -91,11 +90,8 @@ export default function MealCard(props) {
         {/* <ShareIcon /> */}
         {/* </IconButton> */}
 
-        <div onClick={handleClick}
-          className={classes.addToCart}>
-          <FontAwesome 
-          //id={props.}
-          />
+        <div onClick={() => props.addToCart(props.id, props.price)} className={classes.addToCart}>
+          <FontAwesome />
         </div>
 
         <IconButton
