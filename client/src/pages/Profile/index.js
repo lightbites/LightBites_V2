@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import Header from "../../components/Header-Welcome";
 //import ProfileCard from "../../components/Profile-Card";
 import useFetch from "./ProfileHook";
+import useFetch2 from './HistoryHook'
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 import Card from "@material-ui/core/Card";
@@ -46,7 +47,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Profile() {
   const [data, loading] = useFetch("https://lightbites.herokuapp.com/api/customers");
-  const [info, searching] = useFetch("https://lightbites.herokuapp.com/api/orderhistory");
+  const [info, searching] = useFetch2("https://lightbites.herokuapp.com/api/orderhistory");
   const classes = useStyles();
   return (
     <div className={classes.root}>
