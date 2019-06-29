@@ -170,14 +170,7 @@ class App extends React.Component {
         <br />
         <br />
         <p>
-          db.sequelize.query("
-            select SUM(wo.quantity), s.title 
-            from what_ordered wo 
-            left join Stock s 
-              on wo.meal_id = s.meal_id 
-            where wo.fulfillment_date = (SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1,08, DAYOFWEEK(CURDATE()))) DAY)) 
-            group by s.title;
-          ").then(([results, metadata]) => {   });
+ 
         </p>
         <p>
           <Button 
@@ -192,7 +185,7 @@ class App extends React.Component {
         <br />
  
         <p>
-          scripts/wo-oh.js 
+          
         </p>
         <p>
           <Button 
@@ -206,7 +199,7 @@ class App extends React.Component {
         <br />
         <br />
         <p>
-          button to route to add to inventory
+          
         </p>
         <p>
           <Link to="/addStock"><Button variant="contained" color="primary">
@@ -216,7 +209,7 @@ class App extends React.Component {
         <br />
         <br />
         <p>
-          button to route to remove from inventory
+          
         </p>
         <p>
           <Link to="/update"><Button variant="contained" color="primary">
@@ -255,3 +248,18 @@ export default App;
 //   next week
 // </Button>
 // </p>
+
+// db.sequelize.query("
+// select SUM(wo.quantity), s.title 
+// from what_ordered wo 
+// left join Stock s 
+//   on wo.meal_id = s.meal_id 
+// where wo.fulfillment_date = (SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1,08, DAYOFWEEK(CURDATE()))) DAY)) 
+// group by s.title;
+// ").then(([results, metadata]) => {   });
+
+// scripts/wo-oh.js 
+
+// button to route to add to inventory
+
+// button to route to remove from inventory
