@@ -1,4 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import Jumbotron from "./Admin/jumbotron/index.js";
+import Container from "./Admin/container/index.js";
+import Button from "@material-ui/core/Button";
+import "./Admin/App.css";
+var axios = require("axios");
 // import { fade, makeStyles } from "@material-ui/core/styles";
 // import AppBar from "@material-ui/core/AppBar";
 // import Toolbar from "@material-ui/core/Toolbar";
@@ -12,11 +18,6 @@ import React from "react";
 // import MailIcon from "@material-ui/icons/Mail";
 // import NotificationsIcon from "@material-ui/icons/Notifications";
 // import MoreIcon from "@material-ui/icons/MoreVert";
-import { Link } from "react-router-dom";
-import Jumbotron from "./Admin/jumbotron/index.js";
-import Container from "./Admin/container/index.js";
-import Button from "@material-ui/core/Button";
-import "./Admin/App.css";
 
 // var customerDB = require("https://lightbites.herokuapp.com/api/customers");
 // var orderhistoryDB = require("https://lightbites.herokuapp.com/api/order_history");
@@ -93,11 +94,29 @@ import "./Admin/App.css";
 class App extends React.Component {
   state = {
     containerBox: "Please choose a week to display. 'src/components/Admin/container/index.js'",
-    containerName: ''
+    containerName: ""
   }
+
 
   thisWeek = (props) => {
     fetch("https://lightbites.herokuapp.com/api/stock")
+      .then(res => res.json())
+      .then((result) => {
+        this.setState({
+          containerBox: result[0].fulfillment_date,
+          containerName: result[0].meal_id
+        });
+      },
+      (error) => {
+        this.setState({
+          error
+        });
+      }
+      );
+  };
+
+  complete = (props) => {
+    fetch("https://lightbites.herokuapp.com/api/wordered") 
       .then(res => res.json())
       .then(
         (result) => {
@@ -112,36 +131,16 @@ class App extends React.Component {
           });
         }
       );
-  };
 
-
-  // thisWeek = (props) => {
-  //   props.get("https://lightbites.herokuapp.com/api/stock", function(req, res) {
-  //     this.setState({
-  //       containerBox: res[0].fulfillment_date,
-  //       containerName: res[0].meal_id
-  //     });
-  //   }
-  // };
-
-  nextWeek = (props) => {
-  // db.sequelize.query("select SUM(wo.quantity), s.title from what_ordered wo left join Stock s on wo.meal_id = s.meal_id where wo.fulfillment_date = (SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1,08, DAYOFWEEK(CURDATE()))) DAY)) group by s.title;").then(([results, metadata]) => {   });
-    this.setState({containerBox: "y", containerName: " "}); 
-  };
-
-  complete = (props) => {
-    //fetch('https://lightbites.herokuapp.com/api/stock', {method: 'GET'}.then(res => res.json()).then(data => //Here is where you'd add a fetch with POST
-    this.setState({containerBox: "z", containerName: " "}); 
+    // fetch('https://lightbites.herokuapp.com/api/stock', {method: 'GET'}.then(res => res.json()).then(data => //Here is where you'd add a fetch with POST
+    // this.setState({containerBox: "Complete", containerName: " "}); 
   };
   
-
   render(props) {
     return (
       <div className="App">
         <Jumbotron />
         <Container state = {this.state}/>
-        <br />
-        <br />
         <br />
         <br />
         <p>
@@ -165,21 +164,9 @@ class App extends React.Component {
         </p>
         <br />
         <br />
+ 
         <p>
-          db.sequelize.query("select SUM(wo.quantity), s.title from what_ordered wo left join Stock s on wo.meal_id = s.meal_id where wo.fulfillment_date = (SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1,08, DAYOFWEEK(CURDATE()))) DAY)) group by s.title;").then(([results, metadata]) => {   });        
-        </p>
-        <p>
-          <Button variant="contained" 
-            color="primary"
-            onClick={this.nextWeek}
-          >
-            next week
-          </Button>
-        </p>
-        <br />
-        <br />
-        <p>
-          wo-oh.js 
+          scripts/wo-oh.js 
         </p>
         <p>
           <Button 
@@ -217,3 +204,28 @@ class App extends React.Component {
 
 export default App;
 
+// nextWeek = (props) => {
+// // db.sequelize.query("select SUM(wo.quantity), s.title from what_ordered wo left join Stock s on wo.meal_id = s.meal_id where wo.fulfillment_date = (SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1,08, DAYOFWEEK(CURDATE()))) DAY)) group by s.title;").then(([results, metadata]) => {   });
+//   this.setState({containerBox: "y", containerName: " "}); 
+// };
+
+
+// removed next week as not MVP
+// <p>
+// db.sequelize.query("
+//   select SUM(wo.quantity), s.title 
+//   from what_ordered wo 
+//   left join Stock s 
+//     on wo.meal_id = s.meal_id 
+//   where wo.fulfillment_date = (SELECT DATE_ADD(CURDATE(), INTERVAL (09 - IF(DAYOFWEEK(CURDATE())=1,08, DAYOFWEEK(CURDATE()))) DAY)) 
+//   group by s.title;
+// ").then(([results, metadata]) => {   });        
+// </p>
+// <p>
+// <Button variant="contained" 
+//   color="primary"
+//   onClick={this.nextWeek}
+// >
+//   next week
+// </Button>
+// </p>
