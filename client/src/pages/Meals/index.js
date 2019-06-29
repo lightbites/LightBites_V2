@@ -38,7 +38,6 @@ export default function Meals() {
   const classes = useStyles();
   const [items, setItems] = useState([]);
 
-  
   fetch("https://lightbites.herokuapp.com/api/stock", {
     method: "GET"
   })
@@ -46,6 +45,26 @@ export default function Meals() {
     .then(data => {
       setItems(data);
     });
+
+  const addToCart = (id, price) => {
+    // console.log(id)
+    // console.log(price)
+    var url = "https://lightbites.herokuapp.com/api/cart/create";
+    var data = { id, price };
+    sessionStorage.setItem("myValueInLocalStorage", JSON.stringify(data));
+    fetch(url, {
+      method: "POST", // or 'PUT'
+      body: JSON.stringify(data), // data can be `string` or {object}!
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(response => console.log("Success:", JSON.stringify(response)))
+      .catch(error => console.error("Error:", error));
+  };
+
   return (
     <div>
       <Header />
@@ -54,23 +73,28 @@ export default function Meals() {
           <Grid container spacing={3}>
             <Grid item xs={4}>
               <p className={classes.paragraph}>
-                Pick your meals for the week. Just click the cart icon to add meals to your cart.{" "}
+                Pick your meals for the week. Just click the cart icon to add
+                meals to your cart.{" "}
               </p>
             </Grid>
             <Grid item xs={8}>
               <Box className={classes.box} />
-              
             </Grid>
-            <Link href="/cart"><Button color="primary" className={classes.button}>Go to Cart</Button></Link>
+            <Link href="/cart">
+              <Button color="primary" className={classes.button}>
+                Go to Cart
+              </Button>
+            </Link>
           </Grid>
-          <div className={classes.menu}>
+          {/* <div className={classes.menu}>
             <SimpleMenu />
-          </div>
+          </div> */}
           <Grid container spacing={3}>
             {items.map(item => (
               <Grid item xs={3}>
                 <MealCard
                   key={item.meal_id}
+                  id={item.meal_id}
                   title={item.title1}
                   img={item.imageURL}
                   price={item.price}
@@ -84,7 +108,7 @@ export default function Meals() {
                   line14={item.line14}
                   line15={item.line15}
                   line16={item.line16}
-                  
+                  addToCart={addToCart.bind(addToCart)}
                 />
               </Grid>
             ))}
