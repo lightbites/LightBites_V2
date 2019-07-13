@@ -11,11 +11,8 @@ import Meals from "./pages/Meals";
 import Notfound from "./notfound";
 import Checkout from "./pages/Checkout";
 import Administration from "./components/Admin";
-import FontAwesome from "./components/addToCart";
 import addToStock from "./components/addToStock";
 import updateStock from "./components/updateStock";
-//import { Link } from "react-router-dom";
-import SimpleMenu from "./components/Menu";
 
 const routing = (
   <Router>
@@ -28,12 +25,10 @@ const routing = (
         <Route path="/profile" component={Profile} />
         <Route path="/cart" component={Cart} />
         <Route path="/meals" component={Meals} />
-        <Route path="/menu" component={SimpleMenu} /> {/* remove path before deploy */}
         <Route path="/checkout" component={Checkout} />
-        <Route path="/administration" component={Administration} />
+        <Route path="/admin" component={Administration} />
         <Route path="/addStock" component={addToStock} />
         <Route path="/update" component={updateStock} />
-        <Route path="/icon" component={FontAwesome} /> {/* remove path before deploy */}
         <Route component={Notfound} />
       </Switch>
     </div>
