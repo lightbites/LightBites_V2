@@ -42,4 +42,4 @@ function StickyFooter(props) {
   );
 }
 
-export default connect (state => ({ name: state.users.name })) (StickyFooter);
+export default connect(state => ({ name: state.users.name })) (StickyFooter);

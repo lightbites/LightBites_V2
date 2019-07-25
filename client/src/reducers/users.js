@@ -7,7 +7,8 @@ const users = createReducer({
 
 }, {
   "login": (state, action) => {
-    return state;
+    // return state;
+    state.name = action.name;
   }
 });
 
