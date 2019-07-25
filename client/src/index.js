@@ -16,6 +16,9 @@ import addToStock from "./components/addToStock";
 import updateStock from "./components/updateStock";
 //import { Link } from "react-router-dom";
 import SimpleMenu from "./components/Menu";
+import { Provider } from "react-redux";
+import store from "./store";
+
 
 const routing = (
   <Router>
@@ -40,4 +43,4 @@ const routing = (
   </Router>
 );
 
-ReactDOM.render(routing, document.getElementById("root"));
+ReactDOM.render(<Provider store = {store}>{routing}</Provider>, document.getElementById("root"));
